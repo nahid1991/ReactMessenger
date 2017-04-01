@@ -19,7 +19,7 @@ export class Login extends React.Component {
   // }
   responseFacebook(response) {
     console.log(response.id + ' ' + response.name);
-    console.log(response.username);
+    console.log(response.accessToken);
   }
 
   render() {

@@ -18,7 +18,8 @@ export class Login extends React.Component {
   //   dispatch(actions.startLogin());
   // }
   responseFacebook(response) {
-    console.log(response);
+    console.log(response.id + ' ' + response.name);
+    console.log(response.username);
   }
 
   render() {

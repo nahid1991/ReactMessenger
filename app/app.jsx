@@ -10,6 +10,7 @@ var store = require('configureStore').configure();
 
 // import firebase from 'app/firebase';
 import router from 'app/router';
+
 //
 //
 //

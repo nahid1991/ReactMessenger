@@ -1,0 +1,133 @@
+.navbar.center .navbar-inner {
+  text-align: center;
+}
+.navbar.center .navbar-inner .nav {
+  float: none;
+  display: inline-block;
+  margin-top: 2rem;
+}
+.pre-scrollable {
+  min-height: 80vh !important;
+  /*position: fixed;*/
+  overflow: auto !important;
+}
+
+h4{
+  font-weight: bold;
+  font-style: oblique;
+}
+
+p{
+  font-weight: bold;
+  font-style: oblique;
+}
+
+a{
+  font-weight: bold;
+  font-style: oblique;
+}
+
+.pre-scrollable::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 5px;
+}
+
+.pre-scrollable::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.pre-scrollable::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.border-line {
+  border-right: thin solid #C0C0C0;
+}
+
+.panel {
+  min-height: 90vh !important;
+  /*overflow: hidden;*/
+}
+
+/*body {
+  overflow: hidden;
+}*/
+
+.custom-btn {
+  width: 100% !important;
+  display: inline-block;
+  margin-bottom: 6px;
+  /*padding: 5px;*/
+}
+
+input {
+  width: 100%;
+  font-weight: bold;
+  font-style: oblique;
+}
+
+textarea {
+  font-weight: bold;
+  font-style: oblique;
+  text-align: center;
+}
+
+.thumb-friend {
+  width: 8rem;
+  height: 8rem;
+  /*border-radius: 50%;*/
+  float: left;
+  margin-right: 10px;
+}
+
+.thumb-friend-small {
+  width: 5rem;
+  height: 5rem;
+  /*border-radius: 50%;*/
+  float: left;
+  /*margin-right: 10px;*/
+}
+
+textarea.custom {
+  width: 100% !important;
+}
+
+/*html {
+  background-color: yellow;
+}*/
+
+
+.custom-div {
+  height: 100vh !important;
+  /*margin-bottom: 10px !important;*/
+}
+
+.custom-div-sm {
+  height: 50vh !important;
+  /*margin-bottom: 10px !important;*/
+}
+
+.custom-name-top{
+  margin-top: 4%;
+  width: 50%;
+  overflow: hidden;
+}
+
+.custom-name{
+  width: 50%;
+  overflow: hidden;
+}
+
+/*-webkit-scrollbar {
+    width: 1em;
+}
+
+-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}*/

@@ -15,6 +15,7 @@ module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!foundation-sites/dist/js/foundation.min.js',
+    'script!bootstrap/dist/js/bootstrap.min.js',
     './app/app.jsx'
   ],
 
@@ -78,7 +79,8 @@ module.exports = {
   },
   sassLoader: {
     includePaths: [
-      path.resolve(__dirname, './node_modules/foundation-sites/scss')
+      path.resolve(__dirname, './node_modules/foundation-sites/scss'),
+      path.resolve(__dirname, './node_modules/bootstrap/dist/css')
     ]
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map',

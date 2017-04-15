@@ -119,6 +119,43 @@ textarea.custom {
   overflow: hidden;
 }
 
+.panel {
+  margin-top: 60px;
+}
+
+.input-group-addon{
+  font-style:oblique;
+  font-weight:bold;
+}
+
+.bottom-nav {
+  margin-bottom: 10px;
+}
+
+.custom-control {
+   resize:none;
+}
+
+
+.friends-message {
+  background-color: #1E88E5;
+  padding: 15px;
+  float:left;
+  border-radius: 25px;
+  margin-right: 50%;
+  color: #ffffff;
+}
+
+
+.my-message {
+  background-color: #00ACC1;
+  padding: 15px;
+  float:right;
+  border-radius: 25px;
+  margin-left: 50%;
+  color: #ffffff;
+}
+
 /*-webkit-scrollbar {
     width: 1em;
 }

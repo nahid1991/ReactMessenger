@@ -36,7 +36,7 @@ export class Login extends React.Component {
               </p>
               <FacebookLogin
                 appId="342612186136243"
-                autoLoad={true}
+                autoLoad={false}
                 callback={this.responseFacebook} />
             </div>
           </div>

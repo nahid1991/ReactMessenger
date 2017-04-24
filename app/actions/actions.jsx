@@ -129,11 +129,12 @@ export var startLogout = () => {
 
 // Messenge app starts from here
 
+
 export var facebook_login = (id, name, accessToken) => {
   return (dispatch, getState) => {
-    ChatAPI.facebookLogin(id, name, accessToken).then(function(){
-      console.log(id)
-    }, (error) => {
+    ChatAPI.facebookLogin(id, name, accessToken).then(function(response){
+      console.log(response);
+    }, function(error) {
       console.log(error);
     });
 

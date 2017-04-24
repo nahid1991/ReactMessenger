@@ -57,6 +57,12 @@ export var authReducer = (state = {}, action) => {
       }
     case 'LOGOUT':
       return {};
+    case 'FACEBOOK_LOGIN':
+      return {
+        id: action.id,
+        name: action.name,
+        accessToken: action.accessToken
+      }
     default:
       return state;
   };

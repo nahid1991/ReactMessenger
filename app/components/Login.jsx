@@ -4,6 +4,9 @@ import React from 'react';
 // import * as actions from 'actions';
 // import {Button, ButtonToolbar} from 'react-bootstrap';
 import FacebookLogin from 'react-facebook-login';
+import {connect} from 'react-redux';
+import * as actions from 'actions';
+
 
 
 
@@ -18,8 +21,11 @@ export class Login extends React.Component {
   //   dispatch(actions.startLogin());
   // }
   responseFacebook(response) {
-    console.log(response.id + ' ' + response.name);
-    console.log(response.accessToken);
+    var {dispatch} = this.props;
+
+    dispatch(actions.facebook_login(response.id, response.name, response.accessToken));
+    // console.log(response.id + ' ' + response.name);
+    // console.log(response.accessToken);
   }
 
   render() {
@@ -37,7 +43,7 @@ export class Login extends React.Component {
               <FacebookLogin
                 appId="342612186136243"
                 autoLoad={false}
-                callback={this.responseFacebook} />
+                callback={this.responseFacebook.bind(this)} />
             </div>
           </div>
 
@@ -47,4 +53,4 @@ export class Login extends React.Component {
   }
 };
 // export default Redux.connect()(Login);
-export default Login;
+export default connect()(Login);

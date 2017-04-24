@@ -3,7 +3,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Todo from 'Todo';
-import * as TodoAPI from 'TodoAPI';
+// import * as TodoAPI from 'TodoAPI';
 // var TodoAPI = require('TodoAPI');
 // var Todo = require('Todo');
 

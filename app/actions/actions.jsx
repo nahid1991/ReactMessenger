@@ -132,16 +132,13 @@ export var startLogout = () => {
 
 export var facebook_login = (id, name, accessToken) => {
   return (dispatch, getState) => {
-    ChatAPI.facebookLogin(id, name, accessToken).then(function(response){
-      console.log(response);
-    }, function(error) {
-      console.log(error);
-    });
+    ChatAPI.facebookLogin(id, name, accessToken);
+    var loginData = '';
+    setTimeout(function(){
+      loginData = JSON.parse(localStorage.getItem('loginData'));
+      console.log(loginData);
+    }, 5000);
 
-    // ChatAPI.facebookInfo(accessToken).then(function(){
-    //   console.log(accessToken);
-    // }, (error) => {
-    //   console.log(error);
-    // });
+
   }
 }

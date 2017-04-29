@@ -29,8 +29,13 @@ export class Login extends React.Component {
     var {dispatch} = this.props;
 
     dispatch(actions.facebook_login(response.id, response.name, response.accessToken));
-    // console.log(response.id + ' ' + response.name);
-    // console.log(response.accessToken);
+    var loginData = '';
+    setTimeout(function(){
+      loginData = localStorage.getItem('loginData');
+      if(loginData){
+        window.location.hash = '#/tab';
+      }
+    }, 5000);
   }
 
   render() {

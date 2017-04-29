@@ -7,6 +7,13 @@ import Chatbox from 'Chatbox';
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 
 export class Chatroom extends React.Component{
+  componentWillMount(){
+    if(!JSON.parse(localStorage.getItem('loginData'))){
+      window.location.hash = '#/';
+    }
+  }
+
+
   render () {
     return (
       <div>

@@ -11,6 +11,11 @@ import * as actions from 'actions';
 
 
 export class Login extends React.Component {
+  componentWillMount(){
+    if(JSON.parse(localStorage.getItem('loginData'))){
+      window.location.hash = '#/tab';
+    }
+  }
   // constructor (props) {
   //   super(props);
   //   this.onLogin = this.onLogin.bind(this);

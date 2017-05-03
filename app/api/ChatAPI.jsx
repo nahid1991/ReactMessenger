@@ -7,7 +7,7 @@ const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.5/me?fields=email&access_t
 
 module.exports = {
   facebookLogin: function(id, name, accessToken){
-    var requestUrl = `${CHAT_SERVER}/users/login/`;
+    var requestUrl = `${CHAT_SERVER}/users/facebook_login/`;
 
     console.log(requestUrl);
     this.facebookInfo(accessToken).then(function(response){

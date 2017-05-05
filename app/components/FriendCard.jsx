@@ -5,7 +5,7 @@ export class FriendCard extends React.Component{
   render () {
     return (
       <div>
-        <a href="#" className="btn btn-sm btn-default custom-btn">
+        <a href="#" className="btn btn-sm btn-default custom-btn" title="Angry Owl">
           <img className="thumb-friend img-thumbnail img-circle img-responsive visible-sm visible-md visible-lg" src="https://graph.facebook.com/100002125714172/picture?type=large" />
           <img className="thumb-friend-small img-thumbnail img-circle img-responsive visible-xs" src="https://graph.facebook.com/100002125714172/picture?type=large" />
           <div className="visible-lg visible-md visible-sm">

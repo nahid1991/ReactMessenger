@@ -127,11 +127,18 @@ export var startLogout = () => {
   };
 };
 
-// Messenge app starts from here
+// Messenger app starts from here
 
 
 export var facebook_login = (id, name, accessToken) => {
   return (dispatch, getState) => {
     ChatAPI.facebookLogin(id, name, accessToken);
+  }
+}
+
+
+export var get_user_data = () => {
+  return (dispatch, getState) => {
+    ChatAPI.getUserData();
   }
 }

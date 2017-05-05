@@ -54,7 +54,7 @@ export var authReducer = (state = {}, action) => {
     case 'LOGIN':
       return {
         uid: action.uid
-      }
+      };
     case 'LOGOUT':
       return {};
     case 'FACEBOOK_LOGIN':
@@ -62,7 +62,19 @@ export var authReducer = (state = {}, action) => {
         id: action.id,
         name: action.name,
         accessToken: action.accessToken
-      }
+      };
+    default:
+      return state;
+  };
+};
+
+export var userInfoReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'KEEP_USER_DATA':
+      return {
+        ...state,
+        ...action.auth_user
+      };
     default:
       return state;
   };

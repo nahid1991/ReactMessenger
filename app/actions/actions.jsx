@@ -132,7 +132,9 @@ export var startLogout = () => {
 
 export var facebook_login = (id, name, accessToken) => {
   return (dispatch, getState) => {
-    ChatAPI.facebookLogin(id, name, accessToken);
+    ChatAPI.facebookLogin(id, name, accessToken).then(function(response){
+      console.log(response);
+    });
   }
 }
 
@@ -140,5 +142,12 @@ export var facebook_login = (id, name, accessToken) => {
 export var get_user_data = () => {
   return (dispatch, getState) => {
     ChatAPI.getUserData();
+  }
+}
+
+export var keep_user_data = (auth_user) => {
+  return {
+    type: 'KEEP_USER_DATA',
+    auth_user
   }
 }

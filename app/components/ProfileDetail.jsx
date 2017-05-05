@@ -1,6 +1,7 @@
 import React from 'react';
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 import FriendInfo from 'FriendInfo';
+import {connect} from 'react-redux';
 
 export class ProfileDetail extends React.Component{
   render () {
@@ -12,4 +13,8 @@ export class ProfileDetail extends React.Component{
   }
 }
 
-export default ProfileDetail;
+export default connect(
+  (state) => {
+    return state;
+  }
+)(ProfileDetail);

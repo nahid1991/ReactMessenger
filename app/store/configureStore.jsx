@@ -1,6 +1,6 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
-import {searchTextReducer, showCompletedReducer, todosReducer, authReducer} from 'reducers';
+import {searchTextReducer, showCompletedReducer, todosReducer, authReducer, userInfoReducer} from 'reducers';
 
 
 export var configure = (initialState = {}) => {
@@ -8,7 +8,8 @@ export var configure = (initialState = {}) => {
     searchText: searchTextReducer,
     showCompleted: showCompletedReducer,
     todos: todosReducer,
-    auth: authReducer
+    auth: authReducer,
+    userInfo: userInfoReducer,
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(

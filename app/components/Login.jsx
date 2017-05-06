@@ -28,14 +28,21 @@ export class Login extends React.Component {
   responseFacebook(response) {
     var {dispatch} = this.props;
 
-    dispatch(actions.facebook_login(response.id, response.name, response.accessToken));
-    var loginData = '';
-    setTimeout(function(){
+    dispatch(actions.facebook_login(response.id, response.name, response.accessToken)).then(function(response){
+      var loginData = '';
+
       loginData = localStorage.getItem('loginData');
       if(loginData){
-        window.location.hash = '#/tab';
-      }
-    }, 5000);
+        dispatch(actions.keep_user_data(response));
+        setTimeout(function(){
+          window.location.hash = '#/tab'
+        }, 1000);
+
+          // window.location.hash = '#/tab';
+      } else {}
+    }, function(err){
+      console.log(err);
+    });
   }
 
   render() {

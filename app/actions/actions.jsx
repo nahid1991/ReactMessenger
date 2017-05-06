@@ -132,18 +132,21 @@ export var startLogout = () => {
 
 export var facebook_login = (id, name, accessToken) => {
   return (dispatch, getState) => {
-    ChatAPI.facebookLogin(id, name, accessToken).then(function(response){
-      console.log(response);
-    });
+    return new Promise((resolve, reject) => {
+      ChatAPI.facebookLogin(id, name, accessToken).then(function(response){
+        ChatAPI.getUserData().then(function(res){
+          resolve(res);
+        }, function(err) {
+          reject(new Error(err));
+        });
+      } , function(err){
+        reject(new Error(err));
+      });
+    })
   }
 }
 
 
-export var get_user_data = () => {
-  return (dispatch, getState) => {
-    ChatAPI.getUserData();
-  }
-}
 
 export var keep_user_data = (auth_user) => {
   return {

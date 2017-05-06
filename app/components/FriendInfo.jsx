@@ -14,4 +14,10 @@ export class FriendInfo extends React.Component{
 }
 
 
-export default connect()(FriendInfo);
+export default connect(
+  (state) => {
+    return {
+      userInfo: this.state.userInfo
+    }
+  }
+)(FriendInfo);

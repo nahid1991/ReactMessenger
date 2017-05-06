@@ -52,12 +52,10 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       axios.get(requestUrl, config).then(function(response){
-        console.log(response.data);
         localStorage.setItem('auth_user', JSON.stringify(response.data));
         resolve(response.data);
       }, function(err){
         localStorage.removeItem('loginData');
-        localStorage.removeItem('auth_user');
         console.log(err);
         reject(new Error(err));
       });

@@ -146,6 +146,11 @@ export var facebook_login = (id, name, accessToken) => {
   }
 }
 
+export var get_user_data = (auth_user) => {
+  return (dispatch, getState) => {
+    dispatch(keep_user_data(auth_user));
+  }
+}
 
 
 export var keep_user_data = (auth_user) => {

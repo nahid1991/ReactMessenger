@@ -34,11 +34,7 @@ export class Login extends React.Component {
       loginData = localStorage.getItem('loginData');
       if(loginData){
         dispatch(actions.keep_user_data(response));
-        setTimeout(function(){
-          window.location.hash = '#/tab'
-        }, 1000);
-
-          // window.location.hash = '#/tab';
+        window.location.hash = '#/tab';
       } else {}
     }, function(err){
       console.log(err);

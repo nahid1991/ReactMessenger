@@ -76,6 +76,12 @@ export var userInfoReducer = (state = {}, action) => {
         ...state,
         ...action.auth_user
       };
+    case 'GET_USER_DATA':
+      // console.log(action.auth_user);
+      return {
+        ...state,
+        ...action.auth_user
+      };
     default:
       return state;
   };

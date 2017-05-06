@@ -6,11 +6,11 @@ import {connect} from 'react-redux';
 
 export class FriendInfo extends React.Component{
   render () {
-    var {user} = this.props;
+    var {userInfo} = this.props;
     return (
       <div className="col-sm-12 custom-div-sm">
-        <img className="thumb-friend img-thumbnail img-circle img-responsive" src="https://graph.facebook.com/100002125714172/picture?type=large" />
-          <h4 className="custom-name-top">{user.first_name} </h4><h4 className="custom-name">{user.last_name}</h4>
+        <img className="thumb-friend img-thumbnail img-circle img-responsive" src={userInfo.picture} />
+          <h4 className="custom-name-top">{userInfo.user.first_name} </h4><h4 className="custom-name">{userInfo.user.last_name}</h4>
       </div>
     );
   }

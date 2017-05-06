@@ -11,16 +11,18 @@ import * as actions from 'actions';
 export class Chatroom extends React.Component{
   componentWillMount(){
     var {dispatch} = this.props;
-    if(!JSON.parse(localStorage.getItem('loginData'))){
-      window.location.hash = '#/';
-    } else {
-      // dispatch(actions.get_user_data());
-      setTimeout(function(){
-        if(!JSON.parse(localStorage.getItem('auth_user'))){
-          window.location.hash = "#/";
-        }
-      }, 500);
-    }
+    // if(!JSON.parse(localStorage.getItem('loginData'))){
+    //   window.location.hash = '#/';
+    // } else {
+    //   // dispatch(actions.get_user_data());
+    //   setTimeout(function(){
+    //     if(!JSON.parse(localStorage.getItem('auth_user'))){
+    //       window.location.hash = "#/";
+    //     } else {
+    dispatch(actions.get_user_data(JSON.parse(localStorage.getItem('auth_user'))));
+    //     }
+    //   }, 500);
+    // }
   }
 
 

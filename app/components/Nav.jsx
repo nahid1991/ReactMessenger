@@ -15,8 +15,8 @@ export class Nav extends React.Component{
               </ul>
               <ul className="nav navbar-nav center">
                 <li>
-                  <a className="navbar-brand visible-md visible-lg" href="#">MOST PRIVATE MESSENGER</a>
-                  <a className="navbar-brand visible-xs visible-sm" href="#">MPM</a>
+                  <a className="navbar-brand visible-md visible-lg" href="#">hubtalk</a>
+                  <a className="navbar-brand visible-xs visible-sm" href="#">hubtalk</a>
                 </li>
               </ul>
               <ul className="nav navbar-nav navbar-right">

@@ -71,6 +71,7 @@ export var authReducer = (state = {}, action) => {
 export var userInfoReducer = (state = {}, action) => {
   switch (action.type) {
     case 'KEEP_USER_DATA':
+      // console.log(action.auth_user);
       return {
         ...state,
         ...action.auth_user

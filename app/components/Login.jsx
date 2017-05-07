@@ -44,7 +44,7 @@ export class Login extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="page-title">Most Private Mesenger</h1>
+        <h1 className="page-title">hubtalk</h1>
         <div className="row">
 
           <div className="centered col-sm-offset-1 col-md-offset-3 col-lg-offset-4 col-sm-10 col-md-6 col-lg-4">

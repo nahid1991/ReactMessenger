@@ -1,10 +1,31 @@
 import React from 'react';
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
+import ReactDOM from 'react-dom';
 
 export class Messages extends React.Component{
+  constructor(props) {
+    super(props);
+    this.scrollToBottom = this.scrollToBottom.bind(this);
+  }
+
+  scrollToBottom(){
+    const messagesContainer = ReactDOM.findDOMNode(this.messagesContainer);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  componentDidMount(){
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate(){
+    this.scrollToBottom();
+  }
+
+
+
   render () {
     return (
-      <div className="col-xs-8 col-sm-7 col-md-7 col-lg-7 custom-div pre-scrollable border-line">
+      <div ref={(el) => { this.messagesContainer = el; }} className="col-xs-8 col-sm-7 col-md-7 col-lg-7 custom-div pre-scrollable border-line">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <p className="friends-message">
             Here is a text

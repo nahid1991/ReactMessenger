@@ -68,10 +68,11 @@ export class Login extends React.Component {
 
               <GoogleLogin
                 clientId="731586613303-jjm4tlkvp3i8lulsk90h2bn9cbah9sn9.apps.googleusercontent.com"
-                buttonText="Login with Google"
                 autoLoad={false}
                 onSuccess={this.responseGoogle.bind(this)}
-                onFailure={this.responseGoogle.bind(this)} />
+                onFailure={this.responseGoogle.bind(this)} >
+                <p>Login with Google</p>
+              </GoogleLogin>
             </div>
           </div>
 

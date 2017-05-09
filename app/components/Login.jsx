@@ -4,6 +4,7 @@ import React from 'react';
 // import * as actions from 'actions';
 // import {Button, ButtonToolbar} from 'react-bootstrap';
 import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 
@@ -41,6 +42,10 @@ export class Login extends React.Component {
     });
   }
 
+  responseGoogle(response) {
+    console.log(response);
+  }
+
   render() {
     return (
       <div>
@@ -57,6 +62,16 @@ export class Login extends React.Component {
                 appId="342612186136243"
                 autoLoad={false}
                 callback={this.responseFacebook.bind(this)} />
+
+              <br/>
+              <hr/>
+
+              <GoogleLogin
+                clientId="731586613303-jjm4tlkvp3i8lulsk90h2bn9cbah9sn9.apps.googleusercontent.com"
+                buttonText="Login with Google"
+                autoLoad={false}
+                onSuccess={this.responseGoogle.bind(this)}
+                onFailure={this.responseGoogle.bind(this)} />
             </div>
           </div>
 

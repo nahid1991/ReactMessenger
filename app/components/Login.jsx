@@ -44,10 +44,8 @@ export class Login extends React.Component {
 
   responseGoogle(response) {
     var {dispatch} = this.props;
-    var image = "" + response.profileObj.imageUrl + "";
-    console.log(response.profileObj.imageUrl);
     dispatch(actions.google_login(response.profileObj.googleId,
-      response.profileObj.name, image, response.profileObj.email)).then(function(response){
+      response.profileObj.name, response.profileObj.imageUrl, response.profileObj.email)).then(function(response){
       var loginData = '';
 
       loginData = localStorage.getItem('loginData');

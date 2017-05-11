@@ -2,6 +2,12 @@ import React from 'react';
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 
 export class Nav extends React.Component{
+  logout(){
+    localStorage.removeItem('auth_user');
+    localStorage.removeItem('loginData');
+    window.location.hash = '#/';
+  }
+
   render () {
     return (
       <div>
@@ -20,7 +26,9 @@ export class Nav extends React.Component{
                 </li>
               </ul>
               <ul className="nav navbar-nav navbar-right">
-
+                <li>
+                  <a href="#" onClick={this.logout.bind(this)}>Log out</a>
+                </li>
               </ul>
             </div>
           </div>

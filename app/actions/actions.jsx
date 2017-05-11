@@ -146,7 +146,7 @@ export var facebook_login = (id, name, accessToken) => {
   }
 }
 
-export var google_login = (id, name, accessToken) => {
+export var google_login = (id, name, imageUrl, email) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       ChatAPI.googleLogin(id, name, imageUrl, email).then(function(response){

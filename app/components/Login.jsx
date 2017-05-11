@@ -43,7 +43,21 @@ export class Login extends React.Component {
   }
 
   responseGoogle(response) {
-    console.log(response);
+    var {dispatch} = this.props;
+    var image = "" + response.profileObj.imageUrl + "";
+    console.log(response.profileObj.imageUrl);
+    dispatch(actions.google_login(response.profileObj.googleId,
+      response.profileObj.name, image, response.profileObj.email)).then(function(response){
+      var loginData = '';
+
+      loginData = localStorage.getItem('loginData');
+      if(loginData){
+        dispatch(actions.keep_user_data(response));
+        window.location.hash = '#/tab';
+      } else {}
+    }, function(err){
+      console.log(err);
+    });
   }
 
   render() {
@@ -69,6 +83,7 @@ export class Login extends React.Component {
               <GoogleLogin
                 clientId="731586613303-jjm4tlkvp3i8lulsk90h2bn9cbah9sn9.apps.googleusercontent.com"
                 autoLoad={false}
+                fetchBasicProfile={true}
                 onSuccess={this.responseGoogle.bind(this)}
                 onFailure={this.responseGoogle.bind(this)} >
                 <p>Login with Google</p>

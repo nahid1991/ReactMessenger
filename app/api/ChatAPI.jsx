@@ -39,6 +39,35 @@ module.exports = {
 
   },
 
+  googleLogin: function(id, name, imageUrl, email){
+    var requestUrl = `${CHAT_SERVER}/users/google_login/`;
+
+    return new Promise((resolve, reject) => {
+      var postData = {
+        user_id: id,
+        name: name,
+        access_key: 'No',
+        email: email,
+        image_url: imageUrl
+      };
+
+      var config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': '*/*'
+        }
+      };
+
+      axios.post(requestUrl, postData, config).then(function(response){
+        localStorage.setItem('loginData', JSON.stringify(response.data));
+        resolve(response.data);
+      }, function(err){
+        reject(new Error('Unable to fetch user data'));
+      });
+    });
+
+  },
+
 
   getUserData: function(){
     var requestUrl = `${CHAT_SERVER}/users/user_info/`;

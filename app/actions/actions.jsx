@@ -146,6 +146,22 @@ export var facebook_login = (id, name, accessToken) => {
   }
 }
 
+export var google_login = (id, name, accessToken) => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      ChatAPI.googleLogin(id, name, imageUrl, email).then(function(response){
+        ChatAPI.getUserData().then(function(res){
+          resolve(res);
+        }, function(err) {
+          reject(new Error(err));
+        });
+      } , function(err){
+        reject(new Error(err));
+      });
+    })
+  }
+}
+
 export var get_user_data = (auth_user) => {
   return (dispatch, getState) => {
     dispatch(keep_user_data(auth_user));

@@ -34,6 +34,7 @@ export class Login extends React.Component {
 
       loginData = localStorage.getItem('loginData');
       if(loginData){
+        console.log(response);
         dispatch(actions.keep_user_data(response));
         window.location.hash = '#/tab';
       } else {}
@@ -74,7 +75,6 @@ export class Login extends React.Component {
                 appId="342612186136243"
                 autoLoad={false}
                 callback={this.responseFacebook.bind(this)} />
-
               <br/>
               <hr/>
 

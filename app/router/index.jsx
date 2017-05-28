@@ -6,14 +6,14 @@ import Login from 'Login';
 import firebase from 'app/firebase/';
 
 var requireLogin = (nextState, replace, next) => {
-  if(!JSON.parse(localStorage.getItem('loginData')) && !JSON.parse(localStorage.getItem('auth_user'))){
+  if(!JSON.stringify(localStorage.getItem('loginData')) && !JSON.parse(localStorage.getItem('auth_user'))){
     replace('/');
   }
   next();
 };
 
 var redirectIfLoggedIn = (nextState, replace, next) => {
-  if(JSON.parse(localStorage.getItem('loginData')) && JSON.parse(localStorage.getItem('auth_user'))){
+  if(JSON.stringify(localStorage.getItem('loginData')) && JSON.parse(localStorage.getItem('auth_user'))){
     replace('/tab');
   }
   next();

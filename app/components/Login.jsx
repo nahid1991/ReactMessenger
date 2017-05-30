@@ -97,7 +97,8 @@ export class Login extends React.Component {
                 onFailure={this.responseGoogle.bind(this)} >
                 <p>Login with Google</p>
               </GoogleLogin>
-              <img ref="loader" src='./loader.gif' className="centered" style={{marginLeft:'50%', width: '25%', display:'none', zIndex:'0'}}></img>
+              <hr/>
+              <img ref="loader" src='./loader.gif' className="centered" style={{marginLeft: '35%', width: '25%', display:'none', zIndex:'0'}}></img>
             </div>
           </div>
 

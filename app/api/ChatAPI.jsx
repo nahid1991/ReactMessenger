@@ -59,6 +59,7 @@ module.exports = {
 
       axios.post(requestUrl, postData, config).then(function(response){
         localStorage.setItem('loginData', response.data);
+        // console.log(response.data);
         resolve(response.data);
       }, function(err){
         reject(new Error('Unable to fetch user data'));

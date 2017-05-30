@@ -15,19 +15,18 @@ export class Nav extends React.Component{
           <div className="container-fluid">
 
             <div className="navbar-header">
+
+              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+              <a className="navbar-brand" href="#">hubtalk</a>
             </div>
-            <div>
-              <ul className="nav navbar-nav navbar-left">
-              </ul>
-              <ul className="nav navbar-nav center">
-                <li>
-                  <a className="navbar-brand visible-md visible-lg" href="#">hubtalk</a>
-                  <a className="navbar-brand visible-xs visible-sm" href="#">hubtalk</a>
-                </li>
-              </ul>
+            <div className="collapse navbar-collapse" id="myNavbar">
               <ul className="nav navbar-nav navbar-right">
                 <li>
-                  <a href="#" onClick={this.logout.bind(this)}>Log out</a>
+                    <a href="#" onClick={this.logout.bind(this)}>Log out</a>
                 </li>
               </ul>
             </div>

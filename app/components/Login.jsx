@@ -7,6 +7,7 @@ import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
+import ReactDOM from 'react-dom';
 
 
 
@@ -28,10 +29,11 @@ export class Login extends React.Component {
   // }
   responseFacebook(response) {
     var {dispatch} = this.props;
-
+    ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
+    ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
+    // console.log(ReactDOM.findDOMNode(this.refs.loader).style);
     dispatch(actions.facebook_login(response.id, response.name, response.accessToken)).then(function(response){
       var loginData = '';
-
       loginData = localStorage.getItem('loginData');
       if(loginData){
         console.log(response);
@@ -40,11 +42,16 @@ export class Login extends React.Component {
       } else {}
     }, function(err){
       console.log(err);
+      ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
+      ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
     });
   }
 
   responseGoogle(response) {
     var {dispatch} = this.props;
+    ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
+    ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
+    // console.log(ReactDOM.findDOMNode(this.refs.loader).style);
     dispatch(actions.google_login(response.profileObj.googleId,
       response.profileObj.name, response.profileObj.imageUrl, response.profileObj.email)).then(function(response){
       var loginData = '';
@@ -56,6 +63,8 @@ export class Login extends React.Component {
       } else {}
     }, function(err){
       console.log(err);
+      ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
+      ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
     });
   }
 
@@ -68,6 +77,8 @@ export class Login extends React.Component {
           <div className="centered col-sm-offset-1 col-md-offset-3 col-lg-offset-4 col-sm-10 col-md-6 col-lg-4">
             <div className="callout callout-auth">
               <h3>Login</h3>
+
+              <p ref="error" style={{color: 'red', display:'none'}}>Error in logging in</p>
               <p>
                 Login with Facebook.
               </p>
@@ -86,6 +97,7 @@ export class Login extends React.Component {
                 onFailure={this.responseGoogle.bind(this)} >
                 <p>Login with Google</p>
               </GoogleLogin>
+              <img ref="loader" src='./loader.gif' className="centered" style={{width: '50%', display:'none', zIndex:'0'}}></img>
             </div>
           </div>
 

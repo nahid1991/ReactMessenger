@@ -9,6 +9,7 @@ import * as actions from 'actions';
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 
 export class Chatroom extends React.Component{
+
   componentWillMount(){
     var {dispatch} = this.props;
     // if(!JSON.parse(localStorage.getItem('loginData'))){
@@ -23,6 +24,7 @@ export class Chatroom extends React.Component{
     //     }
     //   }, 500);
     // }
+    // return { loaded:false };
   }
 
 

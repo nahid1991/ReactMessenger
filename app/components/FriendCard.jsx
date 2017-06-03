@@ -12,6 +12,7 @@ export class FriendCard extends React.Component{
             <h4 className="custom-name-top">Angry</h4><h4 className="custom-name"> Owl</h4>
           </div></a>
       </div>
+
     );
   }
 }

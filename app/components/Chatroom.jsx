@@ -6,6 +6,7 @@ import ProfileDetail from 'ProfileDetail';
 import Chatbox from 'Chatbox';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
+var store = require('configureStore').configure();
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 
 export class Chatroom extends React.Component{
@@ -21,6 +22,13 @@ export class Chatroom extends React.Component{
     //       window.location.hash = "#/";
     //     } else {
     dispatch(actions.get_user_data(JSON.parse(localStorage.getItem('auth_user'))));
+    dispatch(actions.users()).then(function(response){
+      console.log(response);
+    }, function(err){
+      console.log(err);
+    });
+    // if(this.props.friendsInfo == null){
+    // }
     //     }
     //   }, 500);
     // }
@@ -35,7 +43,7 @@ export class Chatroom extends React.Component{
         <div className="panel">
           <div className="panel-body">
             <div className="row">
-              <Friends/>
+              <Friends friendsInfo={this.props.friendsInfo}/>
               <Messages/>
               <ProfileDetail/>
             </div>
@@ -47,4 +55,10 @@ export class Chatroom extends React.Component{
   }
 }
 
-export default connect()(Chatroom);
+const mapStateToProps = function(store){
+  return {
+    friendsInfo: store.friendsInfo
+  }
+}
+
+export default connect(mapStateToProps)(Chatroom);

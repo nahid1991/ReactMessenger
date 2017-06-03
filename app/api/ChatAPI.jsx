@@ -8,6 +8,22 @@ const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_t
 // axios.defaults.timeout = 5000;
 
 module.exports = {
+  friends: function(){
+    var requestUrl = `${CHAT_SERVER}/users/`;
+    return new Promise((resolve, reject) => {
+      axios.get(requestUrl).then(function(response){
+        // localStorage.setItem('auth_user', JSON.stringify(response.data));
+        resolve(response.data);
+      }, function(err){
+        // localStorage.removeItem('loginData');
+        // localStorage.removeItem('auth_user');
+        console.log(err);
+        reject(new Error(err));
+      });
+    });
+
+  },
+
   facebookLogin: function(id, name, accessToken){
     var requestUrl = `${CHAT_SERVER}/users/facebook_login/`;
     return new Promise((resolve, reject) => {

@@ -72,16 +72,27 @@ export var userInfoReducer = (state = {}, action) => {
   switch (action.type) {
     case 'KEEP_USER_DATA':
       // console.log(action.auth_user);
-      return {
+      return [
         ...state,
-        ...action.auth_user
-      };
+        action.auth_user
+      ];
     case 'GET_USER_DATA':
       // console.log(action.auth_user);
-      return {
+      return [
         ...state,
-        ...action.auth_user
-      };
+        action.auth_user
+      ];
+    default:
+      return state;
+  };
+};
+
+
+export var friendsInfoReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'KEEP_FRIENDS_DATA':
+      // console.log(action.auth_user);
+      return action.friends;
     default:
       return state;
   };

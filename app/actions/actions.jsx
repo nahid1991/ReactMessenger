@@ -146,6 +146,21 @@ export var facebook_login = (id, name, accessToken) => {
   }
 }
 
+
+export var users = () => {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      ChatAPI.friends().then(function(response){
+        // console.log(response);
+        dispatch(keep_friends_data(response));
+        resolve(response);
+      } , function(err){
+        reject(new Error(err));
+      });
+    })
+  }
+}
+
 export var google_login = (id, name, imageUrl, email) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
@@ -158,7 +173,7 @@ export var google_login = (id, name, imageUrl, email) => {
       } , function(err){
         reject(new Error(err));
       });
-    })
+    });
   }
 }
 
@@ -173,5 +188,12 @@ export var keep_user_data = (auth_user) => {
   return {
     type: 'KEEP_USER_DATA',
     auth_user
+  }
+}
+
+export var keep_friends_data = (friends) => {
+  return {
+    type: 'KEEP_FRIENDS_DATA',
+    friends
   }
 }

@@ -1,6 +1,7 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
-import {searchTextReducer, showCompletedReducer, todosReducer, authReducer, userInfoReducer} from 'reducers';
+import {searchTextReducer, showCompletedReducer, todosReducer, authReducer, userInfoReducer,
+  friendsInfoReducer} from 'reducers';
 
 
 export var configure = (initialState = {}) => {
@@ -10,6 +11,7 @@ export var configure = (initialState = {}) => {
     todos: todosReducer,
     auth: authReducer,
     userInfo: userInfoReducer,
+    friendsInfo: friendsInfoReducer
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(

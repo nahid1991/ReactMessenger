@@ -7,7 +7,7 @@ var store = require('configureStore').configure();
 export class FriendCard extends React.Component{
   render () {
     var {friendsInfo} = this.props;
-    console.log(friendsInfo);
+    console.log(JSON.stringify(friendsInfo));
     return (
       <div>
         <a href="" className="btn btn-sm btn-default custom-btn" title="Angry Owl">

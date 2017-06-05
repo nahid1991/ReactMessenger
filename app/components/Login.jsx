@@ -90,6 +90,7 @@ export class Login extends React.Component {
               <h3>Login</h3>
 
               <p ref="error" style={{color: 'red', display:'none'}}>Error in logging in</p>
+              <img ref="loader" src='./loader.gif' className="centered" style={{marginLeft: '35%', width: '25%', display:'none', zIndex:'0'}}></img>
               <p>
                 Login with Facebook.
               </p>
@@ -109,7 +110,7 @@ export class Login extends React.Component {
                 <p>Login with Google</p>
               </GoogleLogin>
               <hr/>
-              <img ref="loader" src='./loader.gif' className="centered" style={{marginLeft: '35%', width: '25%', display:'none', zIndex:'0'}}></img>
+
             </div>
           </div>
 

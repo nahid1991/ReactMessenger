@@ -12,7 +12,7 @@ module.exports = {
     var requestUrl = `${CHAT_SERVER}/users/`;
     return new Promise((resolve, reject) => {
       axios.get(requestUrl).then(function(response){
-        // localStorage.setItem('auth_user', JSON.stringify(response.data));
+        localStorage.setItem('friends', JSON.stringify(response.data));
         resolve(response.data);
       }, function(err){
         // localStorage.removeItem('loginData');

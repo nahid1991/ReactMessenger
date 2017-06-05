@@ -7,8 +7,6 @@ var store = require('configureStore').configure();
 
 export class Friends extends React.Component{
   render () {
-    var {friendsInfo} = this.props;
-    console.log(friendsInfo);
     return(
       <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2 custom-div pre-scrollable border-line">
         <form>
@@ -16,7 +14,7 @@ export class Friends extends React.Component{
             <input type="text" className="form-control" placeholder="Search"></input>
           </div>
         </form>
-        <FriendCard/>
+        <FriendCard friendsInfo={this.props.friendsInfo}/>
       </div>
     );
   }
@@ -25,7 +23,7 @@ export class Friends extends React.Component{
 const mapStateToProps = function(store){
   return {
     friendsInfo: store.friendsInfo
-  }
+  };
 }
 
-export default connect()(Friends);
+export default connect(mapStateToProps)(Friends);

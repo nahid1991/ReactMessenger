@@ -152,7 +152,7 @@ export var users = () => {
     return new Promise((resolve, reject) => {
       ChatAPI.friends().then(function(response){
         // console.log(response);
-        dispatch(keep_friends_data(response));
+        // dispatch(keep_friends_data(response));
         resolve(response);
       } , function(err){
         reject(new Error(err));
@@ -192,6 +192,12 @@ export var keep_user_data = (auth_user) => {
 }
 
 export var keep_friends_data = (friends) => {
+  return (dispatch, getState) => {
+    dispatch(store_friends_data(friends));
+  }
+}
+
+export var store_friends_data = (friends) => {
   return {
     type: 'KEEP_FRIENDS_DATA',
     friends

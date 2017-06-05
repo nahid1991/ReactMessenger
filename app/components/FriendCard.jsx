@@ -1,8 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as actions from 'actions';
+var store = require('configureStore').configure();
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 
 export class FriendCard extends React.Component{
   render () {
+    var {friendsInfo} = this.props;
+    console.log(friendsInfo);
     return (
       <div>
         <a href="" className="btn btn-sm btn-default custom-btn" title="Angry Owl">
@@ -12,9 +17,8 @@ export class FriendCard extends React.Component{
             <h4 className="custom-name-top">Angry</h4><h4 className="custom-name"> Owl</h4>
           </div></a>
       </div>
-
     );
   }
 }
 
-export default FriendCard;
+export default connect()(FriendCard);

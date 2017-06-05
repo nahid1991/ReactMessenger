@@ -22,11 +22,7 @@ export class Chatroom extends React.Component{
     //       window.location.hash = "#/";
     //     } else {
     dispatch(actions.get_user_data(JSON.parse(localStorage.getItem('auth_user'))));
-    dispatch(actions.users()).then(function(response){
-      console.log(response);
-    }, function(err){
-      console.log(err);
-    });
+    dispatch(actions.store_friends_data(JSON.parse(localStorage.getItem('friends'))));
     // if(this.props.friendsInfo == null){
     // }
     //     }

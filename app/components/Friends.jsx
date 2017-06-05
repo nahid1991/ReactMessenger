@@ -7,6 +7,22 @@ var store = require('configureStore').configure();
 
 export class Friends extends React.Component{
   render () {
+
+    var renderFriends = () => {
+      var {friendsInfo} = this.props;
+      if(friendsInfo.length == 0){
+        return (
+          <p>No Friends online</p>
+        );
+      }
+      return friendsInfo.map((friends) => {
+        return (
+          <FriendCard key={friends._id} {...friends}/>
+        );
+      });
+    };
+
+
     return(
       <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2 custom-div pre-scrollable border-line">
         <form>
@@ -14,7 +30,7 @@ export class Friends extends React.Component{
             <input type="text" className="form-control" placeholder="Search"></input>
           </div>
         </form>
-        <FriendCard friendsInfo={this.props.friendsInfo}/>
+        {renderFriends()}
       </div>
     );
   }

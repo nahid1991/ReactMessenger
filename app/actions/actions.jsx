@@ -161,10 +161,11 @@ export var users = () => {
   }
 }
 
-export var google_login = (id, name, imageUrl, email) => {
+export var google_login = (accessToken) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      ChatAPI.googleLogin(id, name, imageUrl, email).then(function(response){
+      // ChatAPI.googleLogin(accessToken);
+      ChatAPI.googleLogin(accessToken).then(function(response){
         ChatAPI.getUserData().then(function(res){
           resolve(res);
         }, function(err) {

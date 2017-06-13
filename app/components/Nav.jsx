@@ -5,7 +5,6 @@ export class Nav extends React.Component{
   logout(){
     localStorage.removeItem('auth_user');
     localStorage.removeItem('loginData');
-    window.location.hash = '#/';
   }
 
   render () {
@@ -15,7 +14,6 @@ export class Nav extends React.Component{
           <div className="container-fluid">
 
             <div className="navbar-header">
-
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>

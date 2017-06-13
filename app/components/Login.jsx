@@ -4,10 +4,11 @@ import React from 'react';
 // import * as actions from 'actions';
 // import {Button, ButtonToolbar} from 'react-bootstrap';
 import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 import ReactDOM from 'react-dom';
+import { GoogleLogin } from 'react-google-login-component';
 
 
 
@@ -52,17 +53,41 @@ export class Login extends React.Component {
     });
   }
 
-  responseGoogle(response) {
-    var {dispatch} = this.props;
-    ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
-    ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
-    // console.log(ReactDOM.findDOMNode(this.refs.loader).style);
-    dispatch(actions.google_login(response.profileObj.googleId,
-      response.profileObj.name, response.profileObj.imageUrl, response.profileObj.email)).then(function(response){
-      var loginData = '';
+  // responseGoogle(response) {
+  //   var {dispatch} = this.props;
+  //   ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
+  //   ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
+  //   // console.log(ReactDOM.findDOMNode(this.refs.loader).style);
+  //   dispatch(actions.google_login(response.profileObj.googleId,
+  //     response.profileObj.name, response.profileObj.imageUrl, response.profileObj.email)).then(function(response){
+  //     var loginData = '';
+  //
+  //     loginData = localStorage.getItem('loginData');
+  //     if(loginData){
+  //       dispatch(actions.keep_user_data(response));
+  //       dispatch(actions.users()).then(function(res){
+  //         console.log(res);
+  //         window.location.hash = '#/tab';
+  //       }, function(err){
+  //         console.log(err);
+  //       });
+  //
+  //     } else {}
+  //   }, function(err){
+  //     console.log(err);
+  //     ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
+  //     ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
+  //   });
+  // }
 
+  responseGoogle(googleUser) {
+    var {dispatch} = this.props;
+    var access_token = googleUser.getAuthResponse().access_token;
+    dispatch(actions.google_login(access_token)).then(function(response){
+      var loginData = '';
       loginData = localStorage.getItem('loginData');
       if(loginData){
+        console.log(response);
         dispatch(actions.keep_user_data(response));
         dispatch(actions.users()).then(function(res){
           console.log(res);
@@ -70,7 +95,6 @@ export class Login extends React.Component {
         }, function(err){
           console.log(err);
         });
-
       } else {}
     }, function(err){
       console.log(err);
@@ -96,19 +120,17 @@ export class Login extends React.Component {
               </p>
               <FacebookLogin
                 appId="342612186136243"
+                cssClass="btn btn-lg btn-primary"
                 autoLoad={false}
                 callback={this.responseFacebook.bind(this)} />
               <br/>
               <hr/>
 
-              <GoogleLogin
-                clientId="731586613303-jjm4tlkvp3i8lulsk90h2bn9cbah9sn9.apps.googleusercontent.com"
-                autoLoad={false}
-                fetchBasicProfile={true}
-                onSuccess={this.responseGoogle.bind(this)}
-                onFailure={this.responseGoogle.bind(this)} >
-                <p>Login with Google</p>
-              </GoogleLogin>
+              <GoogleLogin socialId="731586613303-jjm4tlkvp3i8lulsk90h2bn9cbah9sn9.apps.googleusercontent.com"
+                    class="btn btn-lg btn-danger"
+                    scope="profile"
+                    responseHandler={this.responseGoogle.bind(this)}
+                    buttonText="Login With Google"/>
               <hr/>
 
             </div>

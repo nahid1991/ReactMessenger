@@ -41,7 +41,7 @@ export class Chatroom extends React.Component{
             <div className="row">
               <Friends friendsInfo={this.props.friendsInfo}/>
               <Messages/>
-              <ProfileDetail/>
+              <ProfileDetail userInfo={this.props.userInfo}/>
             </div>
           </div>
         </div>
@@ -53,7 +53,8 @@ export class Chatroom extends React.Component{
 
 const mapStateToProps = function(store){
   return {
-    friendsInfo: store.friendsInfo
+    friendsInfo: store.friendsInfo,
+    userInfo: store.userInfo
   }
 }
 

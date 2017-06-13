@@ -192,15 +192,29 @@ export var keep_user_data = (auth_user) => {
   }
 }
 
+export var remove_user_data = () => {
+  return {
+    type: 'REMOVE_USER_DATA'
+  }
+}
+
 export var keep_friends_data = (friends) => {
   return (dispatch, getState) => {
     dispatch(store_friends_data(friends));
   }
 }
 
+
+
 export var store_friends_data = (friends) => {
   return {
     type: 'KEEP_FRIENDS_DATA',
     friends
+  }
+}
+
+export var remove_friends_data = () => {
+  return {
+    type: 'REMOVE_FRIENDS_DATA'
   }
 }

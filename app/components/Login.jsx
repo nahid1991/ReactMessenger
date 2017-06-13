@@ -115,9 +115,6 @@ export class Login extends React.Component {
 
               <p ref="error" style={{color: 'red', display:'none'}}>Error in logging in</p>
               <img ref="loader" src='./loader.gif' className="centered" style={{marginLeft: '35%', width: '25%', display:'none', zIndex:'0'}}></img>
-              <p>
-                Login with Facebook.
-              </p>
               <FacebookLogin
                 appId="342612186136243"
                 cssClass="btn btn-lg btn-primary"

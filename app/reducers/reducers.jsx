@@ -76,6 +76,9 @@ export var userInfoReducer = (state = {}, action) => {
         ...state,
         action.auth_user
       ];
+    case 'REMOVE_USER_DATA':
+      // console.log(action.auth_user);
+      return [];
     case 'GET_USER_DATA':
       // console.log(action.auth_user);
       return [
@@ -93,6 +96,9 @@ export var friendsInfoReducer = (state = [], action) => {
     case 'KEEP_FRIENDS_DATA':
       // console.log(action.auth_user);
       return action.friends;
+    case 'REMOVE_FRIENDS_DATA':
+      // console.log(action.auth_user);
+      return state;
     default:
       return state;
   };

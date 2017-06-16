@@ -83,6 +83,8 @@ export class Login extends React.Component {
   responseGoogle(googleUser) {
     var {dispatch} = this.props;
     var access_token = googleUser.getAuthResponse().access_token;
+    ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
+    ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
     dispatch(actions.google_login(access_token)).then(function(response){
       var loginData = '';
       loginData = localStorage.getItem('loginData');

@@ -6,12 +6,12 @@ var store = require('configureStore').configure();
 
 export class FriendCard extends React.Component{
   render () {
-    var {name, picture} = this.props;
+    var {_id, name, picture} = this.props;
     var formattedName = name.split(" ");
     console.log(JSON.stringify(name));
     return (
       <div>
-        <a href="" className="btn btn-sm btn-default custom-btn" title={name}>
+        <a href={"#/tab/"+_id} className="btn btn-sm btn-default custom-btn" title={name}>
           <img className="thumb-friend img-thumbnail img-circle img-responsive visible-sm visible-md visible-lg" src={picture} />
           <img className="thumb-friend-small img-thumbnail img-circle img-responsive visible-xs" src={picture} />
           <div className="visible-lg visible-md visible-sm">

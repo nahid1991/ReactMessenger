@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 // const CHAT_SERVER = 'http://common-messenger.herokuapp.com';
-const CHAT_SERVER = 'http://192.168.0.101:8000';
+const CHAT_SERVER = 'http://localhost:8001';
 const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_token=';
 const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=';
 
@@ -44,6 +44,29 @@ module.exports = {
           access_key: accessToken,
           email: response
         };
+
+        var config = {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': '*/*'
+          }
+        };
+
+        axios.post(requestUrl, postData, config).then(function(response){
+          localStorage.setItem('loginData', response.data);
+          // console.log(response.data);
+          resolve(response.data);
+        }, function(err){
+          reject(new Error('Unable to fetch user data'));
+        });
+      }).catch(function(e){
+        var postData = {
+          user_id: id,
+          name: name,
+          access_key: accessToken
+        };
+
+        console.log(e);
 
         var config = {
           headers: {

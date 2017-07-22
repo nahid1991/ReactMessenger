@@ -46,7 +46,7 @@
     "script-loader": "^0.7.0",
     "socket.io": "^2.0.1",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
+    "webpack": "^1.15.0"
   },
   "devDependencies": {
     "karma": "^1.4.1",

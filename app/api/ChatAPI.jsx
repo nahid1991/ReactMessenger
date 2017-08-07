@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 // const CHAT_SERVER = 'http://common-messenger.herokuapp.com';
-const CHAT_SERVER = 'http://localhost:8001';
+const CHAT_SERVER = 'http://localhost:4200';
 const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_token=';
 const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=';
 

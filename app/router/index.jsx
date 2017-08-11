@@ -1,10 +1,7 @@
 import React from 'react';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
-import TodoApp from 'TodoApp';
 import Chatroom from 'Chatroom';
-import ChatroomFriend from 'ChatroomFriend';
 import Login from 'Login';
-import firebase from 'app/firebase/';
 
 var requireLogin = (nextState, replace, next) => {
   if(!JSON.stringify(localStorage.getItem('loginData')) && !JSON.parse(localStorage.getItem('auth_user'))){
@@ -25,7 +22,7 @@ export default (
     <Route>
       <Route path="/">
         <Route path="tab" component={Chatroom} onEnter={requireLogin}/>
-        <Route path="tab/:id" component={ChatroomFriend} onEnter={requireLogin}/>
+        <Route path="tab/:id" component={Chatroom} onEnter={requireLogin}/>
         <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
       </Route>
     </Route>

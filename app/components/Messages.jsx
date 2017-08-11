@@ -2,97 +2,56 @@ import React from 'react';
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 
-export class Messages extends React.Component{
-  constructor(props) {
-    super(props);
-    this.scrollToBottom = this.scrollToBottom.bind(this);
-  }
+var $ = require('jquery');
 
-  scrollToBottom(){
-    const messagesContainer = ReactDOM.findDOMNode(this.messagesContainer);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
+export class Messages extends React.Component {
+    constructor(props) {
+        super(props);
+        this.scrollToBottom = this.scrollToBottom.bind(this);
+    }
 
-  componentDidMount(){
-    this.scrollToBottom();
-  }
+    scrollToBottom() {
+        const messagesContainer = ReactDOM.findDOMNode(this.messagesContainer);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
 
-  componentDidUpdate(){
-    this.scrollToBottom();
-  }
+    componentDidMount() {
+        const {socket} = this.props;
+        const messagesContainer = ReactDOM.findDOMNode(this.messagesContainer);
+        socket.on('something else', function (msg) {
+            var message = msg.message;
+            console.log(message);
+            if (msg.id == (JSON.parse(localStorage.auth_user)._id)) {
+                console.log(JSON.stringify(msg));
+                $('.messages').append(
+                    '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
+                    '<p class="my-message">' + message +
+                    '</p></div>'
+                );
+            } else {
+                console.log(JSON.stringify(msg));
+                $('.messages').append(
+                    '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
+                    '<p class="friends-message">' + message +
+                    '</p></div>'
+                );
+            }
+        });
+        this.scrollToBottom();
+    }
 
-
-
-  render () {
-    return (
-      <div ref={(el) => { this.messagesContainer = el; }} className="col-xs-8 col-sm-7 col-md-7 col-lg-7 custom-div pre-scrollable border-line">
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Here is a text
-          </p>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Here is a text
-          </p>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Here is a text
-          </p>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Setting your height to 100% in a div only means that your div will fill 100% of its container; not 100% of the page.
-            I would suggest that you would either want to use a min-height declaration on your div or its container or use JavaScript
-            to find the initial height of the user's screen (because everybody will have something slightly different) and set that as
-            an inline style on your div.
-          </p>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="my-message">
-            Setting your height to 100% in a div only means that your div will fill 100% of its container; not 100% of the page.
-            I would suggest that you would either want to use a min-height declaration on your div or its container or use JavaScript
-            to find the initial height of the user's screen (because everybody will have something slightly different) and set that as
-            an inline style on your div.
-          </p>
-        </div>
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
 
 
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Here is a text
-          </p>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Here is a text
-          </p>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Here is a text
-          </p>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Setting your height to 100% in a div only means that your div will fill 100% of its container; not 100% of the page.
-            I would suggest that you would either want to use a min-height declaration on your div or its container or use JavaScript
-            to find the initial height of the user's screen (because everybody will have something slightly different) and set that as
-            an inline style on your div.
-          </p>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="friends-message">
-            Setting your height to 100% in a div only means that your div will fill 100% of its container; not 100% of the page.
-            I would suggest that you would either want to use a min-height declaration on your div or its container or use JavaScript
-            to find the initial height of the user's screen (because everybody will have something slightly different) and set that as
-            an inline style on your div.
-          </p>
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div ref={(el) => {this.messagesContainer = el;}}
+                 className="col-xs-8 col-sm-7 col-md-7 col-lg-7 custom-div messages pre-scrollable border-line">
+            </div>
+        );
+    }
 }
 
 export default Messages;

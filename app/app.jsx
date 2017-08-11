@@ -10,7 +10,6 @@ var store = require('configureStore').configure();
 
 // import firebase from 'app/firebase';
 import router from 'app/router';
-import io from 'socket.io-client';
 
 //
 //
@@ -26,8 +25,6 @@ import io from 'socket.io-client';
 //   }
 // });
 
-
-const socket = io.connect('http://localhost:4200');
 require('style!css!sass!applicationStyles');
 
 

@@ -28,6 +28,7 @@ export class Messages extends React.Component {
                     '<p class="my-message">' + message +
                     '</p></div>'
                 );
+                this.scrollToBottom();
             } else {
                 console.log(JSON.stringify(msg));
                 $('.messages').append(
@@ -35,6 +36,7 @@ export class Messages extends React.Component {
                     '<p class="friends-message">' + message +
                     '</p></div>'
                 );
+                this.scrollToBottom();
             }
         });
         this.scrollToBottom();

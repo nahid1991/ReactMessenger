@@ -25,15 +25,14 @@ export class Messages extends React.Component {
                     '<p class="my-message">' + message +
                     '</p></div>'
                 );
-                if ($('div.messages').scrollTop + $('div.messages').clientHeight === $('div.messages').scrollHeight) {
-                    $('div.messages').scrollTop = $('div.messages').scrollHeight;
-                }
+                $('.messages').scrollTop($('.messages').height()*10000);
             } else {
                 $('.messages').append(
                     '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
                     '<p class="friends-message">' + message +
                     '</p></div>'
                 );
+                $('.messages').scrollTop($('.messages').height()*10000);
             }
 
         });

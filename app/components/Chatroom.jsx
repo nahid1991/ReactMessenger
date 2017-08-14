@@ -25,7 +25,7 @@ export class Chatroom extends React.Component {
     render() {
         return (
             <div>
-                <Nav/>
+                <Nav socket={socket}/>
                 <div className="panel">
                     <div className="panel-body">
                         <div className="row">

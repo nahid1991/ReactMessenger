@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 
@@ -10,6 +9,7 @@ export class Nav extends React.Component {
         dispatch(actions.remove_friends_data());
         localStorage.removeItem('auth_user');
         localStorage.removeItem('loginData');
+        localStorage.removeItem('friends');
         window.location.hash = '#/';
     }
 

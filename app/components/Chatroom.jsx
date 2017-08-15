@@ -11,16 +11,19 @@ var store = require('configureStore').configure();
 import io from 'socket.io-client';
 // import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 
-const socket = io.connect('http://localhost:4200');
+var socket;
 
 export class Chatroom extends React.Component {
-
     componentWillMount() {
+        socket = io.connect('http://localhost:4200');
         var {dispatch} = this.props;
         dispatch(actions.get_user_data(JSON.parse(localStorage.getItem('auth_user'))));
         dispatch(actions.store_friends_data(JSON.parse(localStorage.getItem('friends'))));
     }
 
+    componentWillUnmount(){
+        socket.disconnect();
+    }
 
     render() {
         return (

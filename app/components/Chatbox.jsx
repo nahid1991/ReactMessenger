@@ -33,6 +33,8 @@ export class Chatbox extends React.Component {
             socket.emit('something else', formattedData);
             this.refs.message.value = '';
             this.refs.message.focus();
+        } else {
+            this.refs.message.focus();
         }
     }
 
@@ -44,7 +46,7 @@ export class Chatbox extends React.Component {
                         <div className="input-group">
                             <textarea className="form-control custom-control custom" rows="2" cols="8" ref="message"
                                 onKeyPress={this.sendMessage.bind(this)}></textarea>
-                            <span className="input-group-addon btn btn-default"
+                            <span className="input-group-addon btn btn-default btn-lg"
                                   onClick={this.sendMessageButton.bind(this)}><i className="fa fa-paper-plane"></i></span>
                         </div>
                     </div>

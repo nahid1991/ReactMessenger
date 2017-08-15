@@ -146,12 +146,15 @@ textarea.custom {
 
 
 .friends-message {
-  background-color: #1E88E5;
+  background-color: #ff6666;
   padding: 15px;
   float:left;
   border-radius: 25px;
   margin-right: 50%;
   color: #ffffff;
+  text-align: left;
+  width: 100%;
+  overflow-wrap: break-word !important;
 }
 
 
@@ -162,6 +165,9 @@ textarea.custom {
   border-radius: 25px;
   margin-left: 50%;
   color: #ffffff;
+  text-align: right;
+  width: 100%;
+  overflow-wrap: break-word !important;
 }
 
 .messages {

@@ -19,7 +19,7 @@ export class FriendCard extends React.Component {
                     <img className="thumb-friend-small img-thumbnail img-circle img-responsive visible-xs visible-sm"
                          src={picture}/>
                     <div>
-                        <p className="custom-name-top visible-lg visible-md"><strong>{name}</strong></p>
+                        <p className="custom-name-top visible-sm visible-lg visible-md"><strong>{name}</strong></p>
                     </div>
                 </a>
             </div>

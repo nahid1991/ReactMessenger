@@ -79,14 +79,14 @@ textarea {
   /*border-radius: 50%;*/
   float: left;
   margin-right: 10px;
+  word-wrap: break-word !important;
 }
 
 .thumb-friend-small {
-  width: 5rem;
-  height: 5rem;
-  /*border-radius: 50%;*/
+  width: 4rem;
+  height: 4rem;
   float: left;
-  /*margin-right: 10px;*/
+  word-wrap: break-word !important;
 }
 
 textarea.custom {
@@ -100,11 +100,14 @@ textarea.custom {
 
 .custom-div {
   height: 100vh !important;
+  overflow: hidden;
   /*margin-bottom: 10px !important;*/
 }
 
 .custom-div-sm {
   height: 50vh !important;
+  overflow: hidden;
+  overflow-wrap: break-word !important;
   /*margin-bottom: 10px !important;*/
 }
 
@@ -114,8 +117,13 @@ textarea.custom {
   overflow: hidden;
 }
 
+.custom-name-top-small{
+  margin-top: 4%;
+  width: 100%;
+}
+
 .custom-name{
-  width: 50%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -174,5 +182,5 @@ textarea.custom {
 }*/
 
 .name{
-  overflow-wrap: break-word;
+  width: 100%;
 }

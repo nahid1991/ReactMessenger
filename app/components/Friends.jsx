@@ -26,7 +26,7 @@ export class Friends extends React.Component {
 
 
         return (
-            <div className="col-sm-2 col-md-2 custom-div pre-scrollable border-line">
+            <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 custom-div pre-scrollable border-line">
                 <form>
                     <div className="form-group">
                         <input type="text" className="form-control" placeholder="Search"></input>

@@ -12,14 +12,14 @@ export class FriendCard extends React.Component {
         var formattedName = name.split(" ");
         return (
             <div>
-                <a href={"#/tab/" + _id} className="btn btn-sm btn-link custom-btn text-center" title={name}>
+                <a href={"#/tab/" + _id} title={name}>
                     <img
-                        className="thumb-friend img-thumbnail img-circle img-responsive visible-sm visible-md visible-lg"
+                        className="thumb-friend img-thumbnail img-circle img-responsive visible-md visible-lg"
                         src={picture}/>
-                    <img className="thumb-friend-small img-thumbnail img-circle img-responsive visible-xs"
+                    <img className="thumb-friend-small img-thumbnail img-circle img-responsive visible-xs visible-sm"
                          src={picture}/>
-                    <div className="visible-lg visible-md visible-sm">
-                        <p className="custom-name-top name"><strong>{name}</strong></p>
+                    <div>
+                        <p className="custom-name-top visible-lg visible-md"><strong>{name}</strong></p>
                     </div>
                 </a>
             </div>

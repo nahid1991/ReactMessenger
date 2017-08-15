@@ -8,7 +8,7 @@ var store = require('configureStore').configure();
 export class ProfileDetail extends React.Component {
     render() {
         return (
-            <div className="col-sm-3 col-md-3 custom-div pre-scrollable visible-sm visible-md visible-lg">
+            <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 custom-div pre-scrollable">
                 <FriendInfo userInfo={this.props.userInfo}/>
             </div>
         );

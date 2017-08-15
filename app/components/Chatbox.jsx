@@ -42,7 +42,7 @@ export class Chatbox extends React.Component {
         return (
             <div>
                 <nav className="navbar navbar-default navbar-fixed-bottom center bottom-nav">
-                    <div className="container-fluid navbar-inner">
+                    <div className="container-fluid navbar-chat navbar-inner">
                         <div className="input-group">
                             <textarea className="form-control custom-control custom" rows="2" cols="8" ref="message"
                                 onKeyPress={this.sendMessage.bind(this)}></textarea>

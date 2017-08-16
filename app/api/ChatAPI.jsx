@@ -42,7 +42,7 @@ module.exports = {
                         user_id: id,
                         name: name,
                         access_key: accessToken,
-                        email: response
+                        email: response+'@facebook.com'
                     };
 
                     var config = {
@@ -54,33 +54,12 @@ module.exports = {
 
                     axios.post(requestUrl, postData, config).then(function (response) {
                         localStorage.setItem('loginData', response.data);
-                        // console.log(response.data);
                         resolve(response.data);
                     }, function (err) {
-                        reject(new Error('Unable to fetch user data'));
+                        reject(new Error('Unable to fetch user data', err));
                     });
                 } catch (err) {
-                    var postData = {
-                        user_id: id,
-                        name: name,
-                        access_key: accessToken,
-                        email: id + '@facebook.com'
-                    };
-
-                    var config = {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': '*/*'
-                        }
-                    };
-
-                    axios.post(requestUrl, postData, config).then(function (response) {
-                        localStorage.setItem('loginData', response.data);
-                        // console.log(response.data);
-                        resolve(response.data);
-                    }, function (err) {
-                        reject(new Error('Unable to fetch user data'));
-                    });
+                    console.log('Unable to fetch user data', err);
                 }
             });
         });
@@ -147,8 +126,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             var requestUrl = `${FACEBOOK_GRAPH}${accessToken}`;
             axios.get(requestUrl).then(function (res) {
-                // console.log(res.data.email);
-                resolve(res.data.email);
+                resolve(res.data.id);
             }, function (err) {
                 reject(new Error(err));
             });

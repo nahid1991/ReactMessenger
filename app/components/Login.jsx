@@ -1,10 +1,5 @@
 import React from 'react';
-// import * as Redux from 'react-redux';
-
-// import * as actions from 'actions';
-// import {Button, ButtonToolbar} from 'react-bootstrap';
 import FacebookLogin from 'react-facebook-login';
-// import GoogleLogin from 'react-google-login';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 import ReactDOM from 'react-dom';
@@ -17,16 +12,6 @@ export class Login extends React.Component {
             window.location.hash = '#/tab';
         }
     }
-
-    // constructor (props) {
-    //   super(props);
-    //   this.onLogin = this.onLogin.bind(this);
-    // }
-    // onLogin() {
-    //   var {dispatch} = this.props;
-    //
-    //   dispatch(actions.startLogin());
-    // }
     responseFacebook(response) {
         var {dispatch} = this.props;
         ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';

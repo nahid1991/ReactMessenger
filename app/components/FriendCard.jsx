@@ -11,7 +11,7 @@ export class FriendCard extends React.Component {
         var {_id, name, picture} = this.props;
         var formattedName = name.split(" ");
         return (
-            <div>
+            <div className="row">
                 <a href={"#/tab/" + _id} title={name}>
                     <img
                         className="thumb-friend img-thumbnail img-circle img-responsive visible-md visible-lg"

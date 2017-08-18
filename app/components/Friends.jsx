@@ -1,13 +1,26 @@
 import React from 'react';
 import FriendCard from 'FriendCard';
 import {connect} from 'react-redux';
-import * as actions from 'actions';
 
 var store = require('configureStore').configure();
-
-// import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
+var $ = require('jquery');
+import * as actions from 'actions';
 
 export class Friends extends React.Component {
+    componentWillMount(){
+        var {dispatch} = this.props;
+        dispatch(actions.store_friends_data(JSON.parse(localStorage.getItem('friends'))));
+    }
+
+    searchFriends(){
+        var searches = this.refs.search.value;
+        if(searches == ''){
+            this.forceUpdate();
+        } else {
+            console.log(searches);
+        }
+    }
+
     render() {
 
         var renderFriends = () => {
@@ -29,7 +42,7 @@ export class Friends extends React.Component {
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 custom-div pre-scrollable border-line">
                 <form>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Search"></input>
+                        <input type="text" ref="search" className="form-control" onKeyUp={this.searchFriends.bind(this)} placeholder="Search"></input>
                     </div>
                 </form>
                 {renderFriends()}

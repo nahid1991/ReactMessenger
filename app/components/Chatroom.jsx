@@ -18,7 +18,6 @@ export class Chatroom extends React.Component {
         socket = io.connect('http://localhost:4200');
         var {dispatch} = this.props;
         dispatch(actions.get_user_data(JSON.parse(localStorage.getItem('auth_user'))));
-        dispatch(actions.store_friends_data(JSON.parse(localStorage.getItem('friends'))));
     }
 
     componentWillUnmount(){

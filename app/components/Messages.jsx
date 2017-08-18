@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 
 var $ = require('jquery');
@@ -19,7 +18,6 @@ export class Messages extends React.Component {
         const {socket} = this.props;
         socket.on('something else', function (msg) {
             var message = msg.message;
-            console.log(JSON.stringify(msg));
             if (msg.id == (JSON.parse(localStorage.auth_user)._id)) {
                 $('.messages').append(
                     '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +

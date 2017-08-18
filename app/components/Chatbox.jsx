@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
-
 export class Chatbox extends React.Component {
     sendMessage(e) {
         const {socket} = this.props;

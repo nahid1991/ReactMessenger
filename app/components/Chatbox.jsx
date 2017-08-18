@@ -5,10 +5,13 @@ export class Chatbox extends React.Component {
         const {socket} = this.props;
         if (e.key == 'Enter') {
             e.preventDefault();
-            if(this.refs.message.value != ''){
+            var message = this.refs.message.value;
+            var result = message.match(/^ +$/g);
+
+            if(message != '' && result == null){
                 var formattedData = {
                     id: (JSON.parse(localStorage.auth_user))._id,
-                    message: this.refs.message.value
+                    message: message
                 };
 
                 socket.emit('something else', formattedData);
@@ -22,10 +25,13 @@ export class Chatbox extends React.Component {
     sendMessageButton(e) {
         const {socket} = this.props;
         e.preventDefault();
-        if(this.refs.message.value != ''){
+        var message = this.refs.message.value;
+        var result = message.match(/^ +$/g);
+
+        if(message != '' && result == null){
             var formattedData = {
                 id: (JSON.parse(localStorage.auth_user))._id,
-                message: this.refs.message.value
+                message: message
             };
 
             socket.emit('something else', formattedData);

@@ -178,7 +178,7 @@ export var googleLogin = (accessToken) => {
 
 export var getUserData = (auth_user) => {
     return (dispatch, getState) => {
-        dispatch(keep_user_data(auth_user));
+        dispatch(keepUserData(auth_user));
     }
 }
 

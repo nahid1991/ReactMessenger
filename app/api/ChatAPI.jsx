@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-// const CHAT_SERVER = 'http://common-messenger.herokuapp.com';
 const CHAT_SERVER = 'http://localhost:4200';
 const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_token=';
 const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=';
-
-// axios.defaults.timeout = 5000;
 
 module.exports = {
     friends: function () {

@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 import {connect} from 'react-redux';
 
 

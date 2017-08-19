@@ -130,7 +130,7 @@ export var startLogout = () => {
 // Messenger app starts from here
 
 
-export var facebook_login = (id, name, accessToken) => {
+export var facebookLogin = (id, name, accessToken) => {
     return (dispatch, getState) => {
         return new Promise((resolve, reject) => {
             ChatAPI.facebookLogin(id, name, accessToken).then(function (response) {
@@ -151,8 +151,6 @@ export var users = () => {
     return (dispatch, getState) => {
         return new Promise((resolve, reject) => {
             ChatAPI.friends().then(function (response) {
-                // console.log(response);
-                // dispatch(keep_friends_data(response));
                 resolve(response);
             }, function (err) {
                 reject(new Error(err));
@@ -161,7 +159,7 @@ export var users = () => {
     }
 }
 
-export var google_login = (accessToken) => {
+export var googleLogin = (accessToken) => {
     return (dispatch, getState) => {
         return new Promise((resolve, reject) => {
             // ChatAPI.googleLogin(accessToken);
@@ -178,41 +176,41 @@ export var google_login = (accessToken) => {
     }
 }
 
-export var get_user_data = (auth_user) => {
+export var getUserData = (auth_user) => {
     return (dispatch, getState) => {
         dispatch(keep_user_data(auth_user));
     }
 }
 
 
-export var keep_user_data = (auth_user) => {
+export var keepUserData = (auth_user) => {
     return {
         type: 'KEEP_USER_DATA',
         auth_user
     }
 }
 
-export var remove_user_data = () => {
+export var removeUserData = () => {
     return {
         type: 'REMOVE_USER_DATA'
     }
 }
 
-export var keep_friends_data = (friends) => {
+export var keepFriendsData = (friends) => {
     return (dispatch, getState) => {
-        dispatch(store_friends_data(friends));
+        dispatch(storeFriendsData(friends));
     }
 }
 
 
-export var store_friends_data = (friends) => {
+export var storeFriendsData = (friends) => {
     return {
         type: 'KEEP_FRIENDS_DATA',
         friends
     }
 }
 
-export var remove_friends_data = () => {
+export var removeFriendsData = () => {
     return {
         type: 'REMOVE_FRIENDS_DATA'
     }

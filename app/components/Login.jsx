@@ -16,11 +16,11 @@ export class Login extends React.Component {
         var {dispatch} = this.props;
         ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
         ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
-        dispatch(actions.facebook_login(response.id, response.name, response.accessToken)).then(function (response) {
+        dispatch(actions.facebookLogin(response.id, response.name, response.accessToken)).then(function (response) {
             var loginData = '';
             loginData = localStorage.getItem('loginData');
             if (loginData) {
-                dispatch(actions.keep_user_data(response));
+                dispatch(actions.keepUserData(response));
                 dispatch(actions.users()).then(function (res) {
                     window.location.hash = '#/tab';
                 }, function (err) {
@@ -41,11 +41,11 @@ export class Login extends React.Component {
         var access_token = googleUser.getAuthResponse().access_token;
         ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
         ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
-        dispatch(actions.google_login(access_token)).then(function (response) {
+        dispatch(actions.googleLogin(access_token)).then(function (response) {
             var loginData = '';
             loginData = localStorage.getItem('loginData');
             if (loginData) {
-                dispatch(actions.keep_user_data(response));
+                dispatch(actions.keepUserData(response));
                 dispatch(actions.users()).then(function (res) {
                     window.location.hash = '#/tab';
                 }, function (err) {

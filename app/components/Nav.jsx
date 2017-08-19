@@ -5,8 +5,8 @@ import * as actions from 'actions';
 export class Nav extends React.Component {
     logout() {
         var {dispatch} = this.props;
-        dispatch(actions.remove_user_data());
-        dispatch(actions.remove_friends_data());
+        dispatch(actions.removeUserData());
+        dispatch(actions.removeFriendsData());
         localStorage.removeItem('auth_user');
         localStorage.removeItem('loginData');
         localStorage.removeItem('friends');

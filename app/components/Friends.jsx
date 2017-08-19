@@ -9,7 +9,7 @@ import * as actions from 'actions';
 export class Friends extends React.Component {
     componentWillMount(){
         var {dispatch} = this.props;
-        dispatch(actions.store_friends_data(JSON.parse(localStorage.getItem('friends'))));
+        dispatch(actions.storeFriendsData(JSON.parse(localStorage.getItem('friends'))));
     }
 
     searchFriends(){

@@ -4,14 +4,14 @@ import Chatroom from 'Chatroom';
 import Login from 'Login';
 
 var requireLogin = (nextState, replace, next) => {
-    if (!JSON.stringify(localStorage.getItem('loginData')) && !JSON.parse(localStorage.getItem('auth_user'))) {
+    if (localStorage.getItem('loginData') == null && localStorage.getItem('auth_user') == null) {
         replace('/');
     }
     next();
 };
 
 var redirectIfLoggedIn = (nextState, replace, next) => {
-    if (JSON.stringify(localStorage.getItem('loginData')) && JSON.parse(localStorage.getItem('auth_user'))) {
+    if (localStorage.getItem('loginData') != null && localStorage.getItem('auth_user') != null) {
         replace('/tab');
     }
     next();

@@ -9,35 +9,67 @@ import * as actions from 'actions';
 export class Friends extends React.Component {
     componentWillMount(){
         var {dispatch} = this.props;
-        dispatch(actions.storeFriendsData(JSON.parse(localStorage.getItem('friends'))));
+		dispatch(actions.users()).then(function (res) {
+			dispatch(actions.storeFriendsData(res.docs));
+		}, function (err) {
+			console.log(err);
+		});
     }
 
     searchFriends(){
+		var {dispatch} = this.props;
         var searches = this.refs.search.value;
         if(searches == ''){
             this.forceUpdate();
+            console.log(searches);
         } else {
             console.log(searches);
         }
     }
+    
+	// renderFriends () {
+	// 	var {friendsInfo} = this.props;
+	// 	if (friendsInfo.length == 0) {
+	// 		return (
+	// 			<p>No Friends online</p>
+	// 		);
+	// 	}
+	// 	return friendsInfo.map((friends) => {
+	// 		return (
+	// 			<FriendCard key={friends._id} {...friends}/>
+	// 		);
+	// 	});
+	// }
+	
+	renderFriends () {
+		var {friendsInfo} = this.props;
+		if (friendsInfo.length == 0) {
+			return (
+				<p>No Friends online</p>
+			);
+		}
+		return friendsInfo.map((friends) => {
+			return (
+				<FriendCard key={friends._id} {...friends}/>
+			);
+		});
+	}
 
     render() {
-
-        var renderFriends = () => {
-            var {friendsInfo} = this.props;
-            if (friendsInfo.length == 0) {
-                return (
-                    <p>No Friends online</p>
-                );
-            }
-            return friendsInfo.map((friends) => {
-                return (
-                    <FriendCard key={friends._id} {...friends}/>
-                );
-            });
-        };
-
-
+		var renderFriends = () => {
+			var {friendsInfo} = this.props;
+			if (friendsInfo.length == 0) {
+				return (
+					<p>No Friends online</p>
+				);
+			}
+			return friendsInfo.map((friends) => {
+				return (
+					<FriendCard key={friends._id} {...friends}/>
+				);
+			});
+		}
+		
         return (
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 custom-div pre-scrollable border-line">
                 <form>
@@ -45,7 +77,7 @@ export class Friends extends React.Component {
                         <input type="text" ref="search" className="form-control" onKeyUp={this.searchFriends.bind(this)} placeholder="Search"></input>
                     </div>
                 </form>
-                {renderFriends()}
+				{renderFriends()}
             </div>
         );
     }

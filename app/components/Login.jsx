@@ -21,11 +21,7 @@ export class Login extends React.Component {
             loginData = localStorage.getItem('loginData');
             if (loginData) {
                 dispatch(actions.keepUserData(response));
-                dispatch(actions.users()).then(function (res) {
-                    window.location.hash = '#/tab';
-                }, function (err) {
-                    console.log(err);
-                });
+                window.location.hash = '#/tab';
             } else {
             }
         }, function (err) {
@@ -46,11 +42,7 @@ export class Login extends React.Component {
             loginData = localStorage.getItem('loginData');
             if (loginData) {
                 dispatch(actions.keepUserData(response));
-                dispatch(actions.users()).then(function (res) {
-                    window.location.hash = '#/tab';
-                }, function (err) {
-                    console.log(err);
-                });
+                window.location.hash = '#/tab';
             } else {
             }
         }, function (err) {

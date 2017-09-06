@@ -5,8 +5,8 @@ const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_t
 const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=';
 
 module.exports = {
-	searchPeople: function (letters) {
-		var requestUrl = `${CHAT_SERVER}/people/${letters}`;
+	searchPeople: function (letters = '', page = 1) {
+		var requestUrl = `${CHAT_SERVER}/people/${letters}?page=${page}`;
 		return new Promise((resolve, reject) => {
 			var config = {
 				headers: {
@@ -15,9 +15,10 @@ module.exports = {
 			};
 			
 			axios.get(requestUrl, config).then(function(response){
+				// console.log(response.data);
 				resolve(response.data);
 			}, function(err){
-				console.log(err);
+				// console.log(err);
 				reject(new Error(err));
 			});
 		})
@@ -43,10 +44,8 @@ module.exports = {
 			
 			axios.get(requestUrl, config).then(function (response) {
 				localStorage.setItem('friends', JSON.stringify(response.data));
-				console.log(JSON.stringify(response.data));
 				resolve(response.data);
 			}, function (err) {
-				console.log(err);
 				reject(new Error(err));
 			});
 		});

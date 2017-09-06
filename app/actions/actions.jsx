@@ -159,6 +159,18 @@ export var users = () => {
 	}
 }
 
+export var searchPeople = (letters, page) => {
+	return (dispatch, getState) => {
+		return new Promise((resolve, reject) => {
+			ChatAPI.searchPeople(letters, page).then(function (res) {
+				resolve(res);
+			}, function (err) {
+				reject(new Error(err));
+			})
+		});
+	}
+}
+
 export var googleLogin = (accessToken) => {
 	return (dispatch, getState) => {
 		return new Promise((resolve, reject) => {
@@ -180,16 +192,6 @@ export var getUserData = (auth_user) => {
 	return (dispatch, getState) => {
 		dispatch(keepUserData(auth_user));
 	}
-}
-
-export var searchPeople = (people) => {
-	return new Promise((resolve, reject) => {
-		ChatAPI.searchPeople(people).then(function (response) {
-			resolve(response);
-		}, function (err) {
-			reject(new Error(err));
-		});
-	});
 }
 
 export var keepUserData = (auth_user) => {

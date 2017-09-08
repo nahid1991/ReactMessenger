@@ -55,7 +55,7 @@ export class Login extends React.Component {
     render() {
         return (
             <div>
-                <h1 className="page-title">hubtalk</h1>
+                <h1 className="page-title"><img src='./ghost.png' className="centered"  style={{maxHeight: "50px"}}></img>good ghost</h1>
                 <div className="row">
 
                     <div

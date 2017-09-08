@@ -14,17 +14,14 @@
 
 h4{
   font-weight: bold;
-  font-style: oblique;
 }
 
 p{
   font-weight: bold;
-  font-style: oblique;
 }
 
 a{
   font-weight: bold;
-  font-style: oblique;
 }
 
 .pre-scrollable::-webkit-scrollbar {
@@ -64,12 +61,10 @@ a{
 input {
   width: 100%;
   font-weight: bold;
-  font-style: oblique;
 }
 
 textarea {
   font-weight: bold;
-  font-style: oblique;
   text-align: center;
 }
 
@@ -83,8 +78,8 @@ textarea {
 }
 
 .thumb-friend-small {
-  width: 3rem;
-  height: 3rem;
+  max-width: 100%;
+  height: auto;
   float: left;
   word-wrap: break-word !important;
 }
@@ -132,7 +127,6 @@ textarea.custom {
 }
 
 .input-group-addon{
-  font-style:oblique;
   font-weight:bold;
 }
 

@@ -11,6 +11,7 @@ export class Friends extends React.Component {
 		var {dispatch} = this.props;
 		dispatch(actions.users()).then(function (res) {
 			dispatch(actions.storeFriendsData(res.docs));
+			console.log(res.docs[0]);
 		}, function (err) {
 			console.log(err);
 		});

@@ -21,11 +21,7 @@ export class Login extends React.Component {
             loginData = localStorage.getItem('loginData');
             if (loginData) {
                 dispatch(actions.keepUserData(response));
-                dispatch(actions.users()).then(function (res) {
-                    window.location.hash = '#/tab';
-                }, function (err) {
-                    console.log(err);
-                });
+                window.location.hash = '#/tab';
             } else {
             }
         }, function (err) {
@@ -46,11 +42,7 @@ export class Login extends React.Component {
             loginData = localStorage.getItem('loginData');
             if (loginData) {
                 dispatch(actions.keepUserData(response));
-                dispatch(actions.users()).then(function (res) {
-                    window.location.hash = '#/tab';
-                }, function (err) {
-                    console.log(err);
-                });
+                window.location.hash = '#/tab';
             } else {
             }
         }, function (err) {
@@ -63,7 +55,7 @@ export class Login extends React.Component {
     render() {
         return (
             <div>
-                <h1 className="page-title">hubtalk</h1>
+                <h1 className="page-title"><img src='./ghost.png' className="centered"  style={{maxHeight: "50px"}}></img>good ghost</h1>
                 <div className="row">
 
                     <div

@@ -1,30 +1,29 @@
 .navbar.center .navbar-inner {
   text-align: center;
 }
+
 .navbar.center .navbar-inner .nav {
   float: none;
   display: inline-block;
   margin-top: 2rem;
 }
+
 .pre-scrollable {
   min-height: 80vh !important;
   /*position: fixed;*/
   overflow: auto !important;
 }
 
-h4{
+h4 {
   font-weight: bold;
-  font-style: oblique;
 }
 
-p{
+p {
   font-weight: bold;
-  font-style: oblique;
 }
 
-a{
+a {
   font-weight: bold;
-  font-style: oblique;
 }
 
 .pre-scrollable::-webkit-scrollbar {
@@ -33,7 +32,7 @@ a{
 }
 
 .pre-scrollable::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .pre-scrollable::-webkit-scrollbar-thumb {
@@ -64,12 +63,10 @@ a{
 input {
   width: 100%;
   font-weight: bold;
-  font-style: oblique;
 }
 
 textarea {
   font-weight: bold;
-  font-style: oblique;
   text-align: center;
 }
 
@@ -83,8 +80,8 @@ textarea {
 }
 
 .thumb-friend-small {
-  width: 4rem;
-  height: 4rem;
+  max-width: 100%;
+  height: auto;
   float: left;
   word-wrap: break-word !important;
 }
@@ -96,7 +93,6 @@ textarea.custom {
 /*html {
   background-color: yellow;
 }*/
-
 
 .custom-div {
   height: 100vh !important;
@@ -111,18 +107,18 @@ textarea.custom {
   /*margin-bottom: 10px !important;*/
 }
 
-.custom-name-top{
+.custom-name-top {
   margin-top: 4%;
   width: 50%;
   overflow: hidden;
 }
 
-.custom-name-top-small{
+.custom-name-top-small {
   margin-top: 4%;
   width: 100%;
 }
 
-.custom-name{
+.custom-name {
   width: 100%;
   overflow: hidden;
 }
@@ -131,9 +127,8 @@ textarea.custom {
   margin-top: 60px;
 }
 
-.input-group-addon{
-  font-style:oblique;
-  font-weight:bold;
+.input-group-addon {
+  font-weight: bold;
 }
 
 .bottom-nav {
@@ -141,14 +136,13 @@ textarea.custom {
 }
 
 .custom-control {
-   resize:none;
+  resize: none;
 }
-
 
 .friends-message {
   background-color: #ff6666;
   padding: 15px;
-  float:left;
+  float: left;
   border-radius: 25px;
   margin-right: 50%;
   color: #ffffff;
@@ -157,11 +151,10 @@ textarea.custom {
   overflow-wrap: break-word !important;
 }
 
-
 .my-message {
   background-color: #00ACC1;
   padding: 15px;
-  float:right;
+  float: right;
   border-radius: 25px;
   margin-left: 50%;
   color: #ffffff;
@@ -187,25 +180,42 @@ textarea.custom {
   outline: 1px solid slategrey;
 }*/
 
-.name{
+.name {
   width: 100%;
 }
 
-@media (min-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
-  body{font-size: 1rem;}
+@media (min-width: 320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  body {
+    font-size: 1rem;
+  }
 }
-@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */
-  body{font-size: 1rem;}
+
+@media (min-width: 480px) { /* smartphones, Android phones, landscape iPhone */
+  body {
+    font-size: 1rem;
+  }
 }
-@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-  body{font-size: 1rem;}
+
+@media (min-width: 600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  body {
+    font-size: 1rem;
+  }
 }
-@media (min-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */
-  body{font-size: 1rem;}
+
+@media (min-width: 801px) { /* tablet, landscape iPad, lo-res laptops ands desktops */
+  body {
+    font-size: 1rem;
+  }
 }
-@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
-  body{font-size: 2rem;}
+
+@media (min-width: 1025px) { /* big landscape tablets, laptops, and desktops */
+  body {
+    font-size: 2rem;
+  }
 }
-@media (min-width:1281px) { /* hi-res laptops and desktops */
-  body{font-size: 2rem;}
+
+@media (min-width: 1281px) { /* hi-res laptops and desktops */
+  body {
+    font-size: 2rem;
+  }
 }

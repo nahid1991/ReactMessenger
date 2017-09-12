@@ -20,9 +20,9 @@ export class Nav extends React.Component {
 					<div className="container-fluid">
 						
 						<div className="navbar-header">
-							<a className="navbar-brand pull-left" href="#" style={{display: 'inline'}}>
+							<a className="navbar-brand" href="#" style={{display: 'inline'}}>
 								<span className="visible-lg visible-md">good ghost </span>
-								<img src="./ghost.png" style={{maxHeight: "50px"}}></img></a>
+								<img src="./ghost.png" className="pull-left" style={{maxHeight: "50px"}}></img></a>
 							<ul className="nav navbar-nav pull-right visible-xs">
 								<li>
 									<a href="#" onClick={this.logout.bind(this)}><strong>Log out</strong></a>

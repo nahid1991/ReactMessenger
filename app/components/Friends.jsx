@@ -16,6 +16,15 @@ export class Friends extends React.Component {
 		});
 	}
 	
+	componentDidMount(){
+		var {dispatch} = this.props;
+		dispatch(actions.findFriends()).then(function(res){
+			console.log(res);
+		}, function(err){
+			console.log(err);
+		});
+	}
+	
 	searchFriends(){
 		var {dispatch} = this.props;
 		var searches = this.refs.search.value;

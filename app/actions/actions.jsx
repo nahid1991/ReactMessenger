@@ -171,6 +171,18 @@ export var searchPeople = (letters, page) => {
 	}
 }
 
+export var findFriends = () => {
+	return(dispatch, getState) => {
+		return new Promise((resolve, reject) => {
+			ChatAPI.searchFriends().then(function(res) {
+				resolve(res);
+			}, function(err) {
+				reject(new Error(err));
+			});
+		});
+	}
+}
+
 export var googleLogin = (accessToken) => {
 	return (dispatch, getState) => {
 		return new Promise((resolve, reject) => {

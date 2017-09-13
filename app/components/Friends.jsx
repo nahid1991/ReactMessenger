@@ -9,18 +9,12 @@ import * as actions from 'actions';
 export class Friends extends React.Component {
 	componentWillMount(){
 		var {dispatch} = this.props;
-		dispatch(actions.users()).then(function (res) {
+		dispatch(actions.findFriends()).then(function (res) {
 			dispatch(actions.storeFriendsData(res.docs));
+            localStorage.setItem('friendsPageNumber', res.page);
+            localStorage.setItem('totalPageFriends', res.pages);
+            localStorage.setItem('searching', false);
 		}, function (err) {
-			console.log(err);
-		});
-	}
-	
-	componentDidMount(){
-		var {dispatch} = this.props;
-		dispatch(actions.findFriends()).then(function(res){
-			console.log(res);
-		}, function(err){
 			console.log(err);
 		});
 	}
@@ -30,9 +24,11 @@ export class Friends extends React.Component {
 		var searches = this.refs.search.value;
 		if(searches == ''){
 			localStorage.removeItem('friendsSearchPageNumber');
-			dispatch(actions.users()).then(function (res) {
+			dispatch(actions.findFriends()).then(function (res) {
 				dispatch(actions.storeFriendsData(res.docs));
 				localStorage.setItem('friendsPageNumber', res.page);
+                localStorage.setItem('totalPageFriends', res.pages);
+                localStorage.setItem('searching', false);
 			}, function (err) {
 				console.log(err);
 			});
@@ -40,7 +36,9 @@ export class Friends extends React.Component {
 		} else {
 			dispatch(actions.searchPeople(searches)).then(function (res) {
 				dispatch(actions.storeFriendsData(res.docs));
-				localStorage.setItem('friendsSearchPageNumber', res.page);
+				localStorage.setItem('friendsPageNumber', res.page);
+                localStorage.setItem('totalPageFriends', res.pages);
+                localStorage.setItem('searching', true);
 			}, function (err) {
 				console.log(err);
 			});

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const CHAT_SERVER = 'http://localhost:4200';
+const CHAT_SERVER = 'http://localhost:4201';
 const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_token=';
 const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=';
 
@@ -26,13 +26,16 @@ module.exports = {
 	},
 	
 	searchPeople: function (letters = '', page = 1) {
+
 		var requestUrl = `${CHAT_SERVER}/people/${letters}?page=${page}`;
 		return new Promise((resolve, reject) => {
-			var config = {
-				headers: {
-					'Accept': '*/*'
-				}
-			};
+            var token = localStorage.getItem('loginData');
+            var config = {
+                headers: {
+                    'Accept': '*/*',
+                    'Authorization': "Token " + token
+                }
+            };
 			
 			axios.get(requestUrl, config).then(function(response){
 				// console.log(response.data);
@@ -114,7 +117,7 @@ module.exports = {
 					user_id: response.sub,
 					name: response.name,
 					access_key: accessToken,
-					email: response.email,
+					email: response.hasOwnProperty('email') ? response.email:response.sub+'@google.com',
 					image_url: response.picture
 				};
 				var config = {

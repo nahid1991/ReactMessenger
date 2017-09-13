@@ -5,6 +5,26 @@ const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_t
 const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=';
 
 module.exports = {
+	searchFriends: function() {
+		var requestUrl = `${CHAT_SERVER}/users/friends?page=1`;
+		
+		return new Promise((resolve, reject) => {
+			var token = localStorage.getItem('loginData');
+			var config = {
+				headers: {
+					'Accept': '*/*',
+					'Authorization': "Token " + token
+				}
+			};
+			
+			axios.get(requestUrl, config).then(function(response) {
+				resolve(response.data);
+			}, function(err){
+				reject(new Error(err));
+			});
+		})
+	},
+	
 	searchPeople: function (letters = '', page = 1) {
 		var requestUrl = `${CHAT_SERVER}/people/${letters}?page=${page}`;
 		return new Promise((resolve, reject) => {

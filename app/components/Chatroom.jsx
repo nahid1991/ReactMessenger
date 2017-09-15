@@ -14,7 +14,7 @@ var socket;
 
 export class Chatroom extends React.Component {
     componentWillMount() {
-        socket = io.connect('http://localhost:4200');
+        socket = io.connect('http://localhost:4201');
         socket.on('connect', function(){
             // console.log(socket.io.engine.id);
         });

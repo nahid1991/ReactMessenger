@@ -8,7 +8,6 @@ var store = require('configureStore').configure();
 export class FriendCard extends React.Component {
 	componentDidMount() {
 		$('.req').on('click', function () {
-			// $('.req').parents('.req-parent').toggleClass('btn-default btn-primary');
 			$(this).closest('a').toggleClass('btn-default btn-primary');
 		});
 	}
@@ -23,7 +22,6 @@ export class FriendCard extends React.Component {
 		var {_id, name, picture, friend} = this.props;
 		
 		var friendsButton = () => {
-			var {friendsInfo} = this.props;
 			if (friend == false) {
 				return (
 					<div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-parent">

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 export class FriendInfo extends React.Component {
     render() {
-        var {userInfo} = this.props;
+        let {userInfo} = this.props;
         return (
             <div>
                 <div className="custom-div-sm visible-lg visible-md">

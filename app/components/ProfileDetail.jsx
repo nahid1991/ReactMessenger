@@ -3,7 +3,7 @@ import React from 'react';
 import FriendInfo from 'FriendInfo';
 import {connect} from 'react-redux';
 
-var store = require('configureStore').configure();
+let store = require('configureStore').configure();
 
 export class ProfileDetail extends React.Component {
     render() {

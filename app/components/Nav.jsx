@@ -4,12 +4,13 @@ import * as actions from 'actions';
 
 export class Nav extends React.Component {
 	logout() {
-		var {dispatch} = this.props;
+		let {dispatch} = this.props;
 		dispatch(actions.removeUserData());
 		dispatch(actions.removeFriendsData());
 		localStorage.removeItem('auth_user');
 		localStorage.removeItem('loginData');
 		localStorage.removeItem('friends');
+        localStorage.removeItem('friendId');
 		window.location.hash = '#/';
 	}
 	

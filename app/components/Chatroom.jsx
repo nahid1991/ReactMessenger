@@ -7,19 +7,26 @@ import Chatbox from 'Chatbox';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 
-var store = require('configureStore').configure();
+let store = require('configureStore').configure();
 import io from 'socket.io-client';
+let friendId;
 
-var socket;
+let socket;
 
 export class Chatroom extends React.Component {
     componentWillMount() {
         socket = io.connect('http://localhost:4201');
-        socket.on('connect', function(){
-            // console.log(socket.io.engine.id);
-        });
-        var {dispatch} = this.props;
+        let {dispatch, params} = this.props;
+        friendId = params.id;
+        localStorage.setItem('friendId', friendId);
+
         dispatch(actions.getUserData(JSON.parse(localStorage.getItem('auth_user'))));
+    }
+
+    componentWillReceiveProps(newProps) {
+        console.log(newProps.params.id);
+        localStorage.setItem('friendId', newProps.params.id);
+        this.forceUpdate();
     }
 
     componentWillUnmount(){
@@ -34,12 +41,12 @@ export class Chatroom extends React.Component {
                     <div className="panel-body">
                         <div className="row">
                             <Friends socket={socket} friendsInfo={this.props.friendsInfo}/>
-                            <Messages socket={socket}/>
+                            <Messages socket={socket} friendId={friendId}/>
                             <ProfileDetail socket={socket} userInfo={this.props.userInfo}/>
                         </div>
                     </div>
                 </div>
-                <Chatbox socket={socket}/>
+                <Chatbox socket={socket} friendId={friendId}/>
             </div>
         );
     }

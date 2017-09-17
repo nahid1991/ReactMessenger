@@ -13,11 +13,11 @@ export class Login extends React.Component {
         }
     }
     responseFacebook(response) {
-        var {dispatch} = this.props;
+        let {dispatch} = this.props;
         ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
         ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
         dispatch(actions.facebookLogin(response.id, response.name, response.accessToken)).then(function (response) {
-            var loginData = '';
+            let loginData = '';
             loginData = localStorage.getItem('loginData');
             if (loginData) {
                 dispatch(actions.keepUserData(response));
@@ -33,12 +33,12 @@ export class Login extends React.Component {
 
 
     responseGoogle(googleUser) {
-        var {dispatch} = this.props;
-        var access_token = googleUser.getAuthResponse().access_token;
+        let {dispatch} = this.props;
+        let access_token = googleUser.getAuthResponse().access_token;
         ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
         ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
         dispatch(actions.googleLogin(access_token)).then(function (response) {
-            var loginData = '';
+            let loginData = '';
             loginData = localStorage.getItem('loginData');
             if (loginData) {
                 dispatch(actions.keepUserData(response));

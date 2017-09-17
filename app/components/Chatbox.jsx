@@ -3,18 +3,21 @@ import React from 'react';
 export class Chatbox extends React.Component {
     sendMessage(e) {
         const {socket} = this.props;
+        let friendId = localStorage.getItem('friendId');
         if (e.key == 'Enter') {
             e.preventDefault();
-            var message = this.refs.message.value;
-            var result = message.match(/^ +$/g);
+            let message = this.refs.message.value;
+            let result = message.match(/^ +$/g);
 
             if(message != '' && result == null){
-                var formattedData = {
+                let formattedData = {
                     id: (JSON.parse(localStorage.auth_user))._id,
-                    message: message
+                    message: message,
+                    chat_room_user: (JSON.parse(localStorage.auth_user))._id + '-' + friendId,
+                    chat_room_friend: friendId + '-' + (JSON.parse(localStorage.auth_user))._id,
                 };
 
-                socket.emit('something else', formattedData);
+                socket.emit('message', formattedData);
                 this.refs.message.value = '';
                 this.refs.message.focus();
             }
@@ -24,17 +27,20 @@ export class Chatbox extends React.Component {
 
     sendMessageButton(e) {
         const {socket} = this.props;
+        let friendId = localStorage.getItem('friendId');
         e.preventDefault();
-        var message = this.refs.message.value;
-        var result = message.match(/^ +$/g);
+        let message = this.refs.message.value;
+        let result = message.match(/^ +$/g);
 
         if(message != '' && result == null){
-            var formattedData = {
+            let formattedData = {
                 id: (JSON.parse(localStorage.auth_user))._id,
-                message: message
+                message: message,
+                chat_room_user: (JSON.parse(localStorage.auth_user))._id + '-' + friendId,
+                chat_room_friend: friendId + '-' + (JSON.parse(localStorage.auth_user))._id,
             };
 
-            socket.emit('something else', formattedData);
+            socket.emit('message', formattedData);
             this.refs.message.value = '';
             this.refs.message.focus();
         } else {

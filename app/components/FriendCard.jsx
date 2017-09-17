@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-var $ = require('jquery');
+let $ = require('jquery');
 
-var store = require('configureStore').configure();
+let store = require('configureStore').configure();
 
 export class FriendCard extends React.Component {
 	componentDidMount() {
@@ -19,16 +19,25 @@ export class FriendCard extends React.Component {
 	}
 	
 	render() {
-		var {_id, name, picture, friend} = this.props;
+		let {_id, name, picture, friend, accepted} = this.props;
 		
-		var friendsButton = () => {
-			if (friend == false) {
+		let friendsButton = () => {
+			if (friend == false && accepted == false) {
 				return (
 					<div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-parent">
 						<a ref="btn" className="btn btn-sm btn-default req text-center">
 							<i className="fa fa-plus"></i></a>
 					</div>
 				);
+			}
+
+			if (friend == true && accepted == false) {
+                return (
+					<div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-parent">
+						<a ref="btn" className="btn btn-sm btn-primary req text-center">
+							<i className="fa fa-plus"></i></a>
+					</div>
+                );
 			}
 		}
 		

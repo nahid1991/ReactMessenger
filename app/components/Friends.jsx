@@ -2,13 +2,13 @@ import React from 'react';
 import FriendCard from 'FriendCard';
 import {connect} from 'react-redux';
 
-var store = require('configureStore').configure();
-var $ = require('jquery');
+let store = require('configureStore').configure();
+let $ = require('jquery');
 import * as actions from 'actions';
 
 export class Friends extends React.Component {
 	componentWillMount(){
-		var {dispatch} = this.props;
+		let {dispatch} = this.props;
 		dispatch(actions.findFriends()).then(function (res) {
 			dispatch(actions.storeFriendsData(res.docs));
             localStorage.setItem('friendsPageNumber', res.page);
@@ -20,8 +20,8 @@ export class Friends extends React.Component {
 	}
 	
 	searchFriends(){
-		var {dispatch} = this.props;
-		var searches = this.refs.search.value;
+		let {dispatch} = this.props;
+		let searches = this.refs.search.value;
 		if(searches == ''){
 			localStorage.removeItem('friendsSearchPageNumber');
 			dispatch(actions.findFriends()).then(function (res) {
@@ -46,8 +46,8 @@ export class Friends extends React.Component {
 	}
 	
 	render() {
-		var renderFriends = () => {
-			var {friendsInfo} = this.props;
+		let renderFriends = () => {
+			let {friendsInfo} = this.props;
 			if (friendsInfo.length == 0) {
 				return (
 					<p>No one is here</p>

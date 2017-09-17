@@ -24,8 +24,8 @@ export class Chatroom extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log(newProps.params.id);
         localStorage.setItem('friendId', newProps.params.id);
+        friendId = newProps.params.id;
         this.forceUpdate();
     }
 

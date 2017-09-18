@@ -24,8 +24,18 @@ export class Chatroom extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
+        const {dispatch} = this.props;
+        if(typeof newProps.params.id ==='undefined') {
+            dispatch(actions.storeFriendId(''));
+        } else {
+            dispatch(actions.storeFriendId(newProps.params.id));
+        }
+
         localStorage.setItem('friendId', newProps.params.id);
         friendId = newProps.params.id;
+        if(this.props.params.id !== newProps.params.id) {
+            socket.removeAllListeners();
+        }
         this.forceUpdate();
     }
 
@@ -41,12 +51,12 @@ export class Chatroom extends React.Component {
                     <div className="panel-body">
                         <div className="row">
                             <Friends socket={socket} friendsInfo={this.props.friendsInfo}/>
-                            <Messages socket={socket} friendId={friendId}/>
+                            <Messages socket={socket} friendId={this.props.friendId}/>
                             <ProfileDetail socket={socket} userInfo={this.props.userInfo}/>
                         </div>
                     </div>
                 </div>
-                <Chatbox socket={socket} friendId={friendId}/>
+                <Chatbox socket={socket} friendId={this.props.friendId}/>
             </div>
         );
     }
@@ -55,7 +65,8 @@ export class Chatroom extends React.Component {
 const mapStateToProps = function (store) {
     return {
         friendsInfo: store.friendsInfo,
-        userInfo: store.userInfo
+        userInfo: store.userInfo,
+        friendId: store.friendId
     }
 }
 

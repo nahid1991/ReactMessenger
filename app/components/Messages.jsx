@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
 
 let $ = require('jquery');
 
@@ -13,42 +14,48 @@ export class Messages extends React.Component {
         const messagesContainer = ReactDOM.findDOMNode(this.messagesContainer);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
-    
-    receiveMessage () {
-		const {socket, friendId} = this.props;
+
+    receiveMessage (friendId) {
+		const {socket} = this.props;
 		let user = JSON.parse(localStorage.getItem('auth_user'))._id;
-		socket.on(user+'-'+friendId, function (msg) {
-			let message = msg.message;
-			if (msg.id == (JSON.parse(localStorage.auth_user)._id)) {
-				$('.messages').append(
-					'<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
-					'<p class="my-message">' + message +
-					'</p></div>'
-				);
-				$('.messages').scrollTop($('.messages').height()*$('.messages').height());
-			} else {
-				$('.messages').append(
-					'<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
-					'<p class="friends-message">' + message +
-					'</p></div>'
-				);
-				$('.messages').scrollTop($('.messages').height()*$('.messages').height());
-			}
-		
-		});
+
+        socket.on(user+'-'+friendId, function (msg) {
+            let message = msg.message;
+
+            if (msg.id == (JSON.parse(localStorage.auth_user)._id)) {
+                $('.messages').append(
+                    '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
+                    '<p class="my-message">' + message +
+                    '</p></div>'
+                );
+                $('.messages').scrollTop($('.messages').height()*$('.messages').height());
+            } else {
+                $('.messages').append(
+                    '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
+                    '<p class="friends-message">' + message +
+                    '</p></div>'
+                );
+                $('.messages').scrollTop($('.messages').height()*$('.messages').height());
+            }
+        });
     }
 
     componentDidMount() {
-        this.receiveMessage();
-        this.scrollToBottom();
-    }
-    
-    
-    componentDidUpdate() {
-		this.receiveMessage();
         this.scrollToBottom();
     }
 
+    componentWillReceiveProps(newProps) {
+        if(this.props.friendId !== newProps.friendId) {
+            $('.messages').empty();
+        }
+    }
+
+    componentDidUpdate() {
+        if(typeof this.props.friendId !== 'undefined') {
+            this.receiveMessage(this.props.friendId);
+        }
+        this.scrollToBottom();
+    }
 
     render() {
         return (
@@ -59,4 +66,4 @@ export class Messages extends React.Component {
     }
 }
 
-export default Messages;
+export default connect()(Messages);

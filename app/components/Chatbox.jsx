@@ -1,9 +1,10 @@
 import React from 'react';
+let $ = require('jquery');
+import {connect} from 'react-redux';
 
 export class Chatbox extends React.Component {
     sendMessage(e) {
-        const {socket} = this.props;
-        let friendId = localStorage.getItem('friendId');
+        const {socket, friendId} = this.props;
         if (e.key == 'Enter') {
             e.preventDefault();
             let message = this.refs.message.value;
@@ -26,8 +27,7 @@ export class Chatbox extends React.Component {
     }
 
     sendMessageButton(e) {
-        const {socket} = this.props;
-        let friendId = localStorage.getItem('friendId');
+        const {socket, friendId} = this.props;
         e.preventDefault();
         let message = this.refs.message.value;
         let result = message.match(/^ +$/g);
@@ -55,7 +55,7 @@ export class Chatbox extends React.Component {
                     <div className="container-fluid navbar-chat navbar-inner">
                         <div className="input-group">
                             <textarea className="form-control custom-control custom" rows="2" cols="8" ref="message"
-                                onKeyPress={this.sendMessage.bind(this)}></textarea>
+                                      onKeyPress={this.sendMessage.bind(this)}></textarea>
                             <span className="input-group-addon"
                                   onClick={this.sendMessageButton.bind(this)}><i className="fa fa-paper-plane"></i></span>
                         </div>
@@ -66,4 +66,5 @@ export class Chatbox extends React.Component {
     }
 }
 
-export default Chatbox;
+
+export default connect()(Chatbox);

@@ -103,3 +103,13 @@ export var friendsInfoReducer = (state = [], action) => {
       return state;
   };
 };
+
+export var friendIdReducer = (state = '', action) => {
+    switch(action.type) {
+        case 'SET_FRIEND_ID':
+            return action.id;
+        default:
+            return state;
+    };
+};
+

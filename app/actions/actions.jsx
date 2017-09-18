@@ -225,6 +225,13 @@ export var keepFriendsData = (friends) => {
 	}
 }
 
+export var storeFriendId = (id) => {
+	return {
+		type: 'SET_FRIEND_ID',
+		id
+	}
+}
+
 
 export var storeFriendsData = (friends) => {
 	return {

@@ -15,25 +15,33 @@ export class Nav extends React.Component {
 	}
 	
 	render() {
+		let {userInfo} = this.props;
 		return (
 			<div>
 				<nav className="navbar navbar-default navbar-fixed-top">
 					<div className="container-fluid">
-						
+
 						<div className="navbar-header">
 							<a className="navbar-brand" href="#" style={{display: 'inline'}}>
 								<span className="visible-lg visible-md">good ghost </span>
 								<img src="./ghost.png" className="pull-left" style={{maxHeight: "50px"}}></img></a>
 							<ul className="nav navbar-nav pull-right visible-xs">
 								<li>
-									<a href="#" onClick={this.logout.bind(this)}><strong>Log out</strong></a>
+									<a href="#" onClick={this.logout.bind(this)}>
+										<img className="thumb-friend-small img-thumbnail img-circle img-responsive
+										 visible-xs visible-sm" src={userInfo.picture}/>
+									</a>
 								</li>
 							</ul>
 						
 						</div>
 						<ul className="nav navbar-nav navbar-right visible-lg visible-md visible-sm ">
+
 							<li>
-								<a href="#" onClick={this.logout.bind(this)}><strong>Log out</strong></a>
+								<a href="#" onClick={this.logout.bind(this)}>
+									<img className="thumb-friend-small img-thumbnail img-circle
+									img-responsive visible-xs visible-sm" src={userInfo.picture}/>
+								</a>
 							</li>
 						</ul>
 					</div>

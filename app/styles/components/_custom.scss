@@ -167,6 +167,10 @@ textarea.custom {
   overflow-y: scroll;
 }
 
+.nav>li>a>img {
+  max-width: 100% !important;
+}
+
 /*-webkit-scrollbar {
     width: 1em;
 }

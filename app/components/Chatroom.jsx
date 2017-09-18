@@ -46,7 +46,7 @@ export class Chatroom extends React.Component {
     render() {
         return (
             <div>
-                <Nav socket={socket}/>
+                <Nav socket={socket} userInfo={JSON.parse(localStorage.getItem('auth_user'))}/>
                 <div className="panel">
                     <div className="panel-body">
                         <div className="row">

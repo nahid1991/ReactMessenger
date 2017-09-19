@@ -97,6 +97,7 @@ textarea {
 
 textarea.custom {
   width: 100% !important;
+  color: #666633;
 }
 
 /*html {
@@ -118,17 +119,20 @@ textarea.custom {
 
 .custom-name-top {
   margin-top: 4%;
+  color: #666633;
   width: 50%;
   overflow: hidden;
 }
 
 .custom-name-top-small {
   margin-top: 4%;
+  color: #666633;
   width: 100%;
 }
 
 .custom-name {
   width: 100%;
+  color: #666633;
   overflow: hidden;
 }
 
@@ -149,7 +153,7 @@ textarea.custom {
 }
 
 .friends-message {
-  background-color: #ff6666;
+  background-color: #666633;
   padding: 15px;
   float: left;
   border-radius: 25px;
@@ -161,7 +165,7 @@ textarea.custom {
 }
 
 .my-message {
-  background-color: #00ACC1;
+  background-color: #CCCC99;
   padding: 15px;
   float: right;
   border-radius: 25px;
@@ -241,7 +245,7 @@ textarea.custom {
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
-  background-color: #4CAF50 !important;
+  background-color: #990033 !important;
   display: inline-block;
 }
 
@@ -274,6 +278,6 @@ textarea.custom {
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropdown {
-  background-color: #3e8e41 !important;
+.dropdown:hover .dropbtn {
+  background-color: #FFFFFF !important;
 }

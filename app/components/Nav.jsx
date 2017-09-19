@@ -18,32 +18,38 @@ export class Nav extends React.Component {
 		let {userInfo} = this.props;
 		return (
 			<div>
-				<nav className="navbar navbar-default navbar-fixed-top">
+				<nav className="navbar navbar-default navbar-fixed-top" style={{height: "% !important"}}>
 					<div className="container-fluid">
 
 						<div className="navbar-header">
 							<a className="navbar-brand" href="#" style={{display: 'inline'}}>
-								<span className="visible-lg visible-md">good ghost </span>
-								<img src="./ghost.png" className="pull-left" style={{maxHeight: "50px"}}></img></a>
-							<ul className="nav navbar-nav pull-right visible-xs">
-								<li>
-									<a href="#" onClick={this.logout.bind(this)}>
-										<img className="thumb-friend-small img-thumbnail img-circle img-responsive
-										 visible-xs visible-sm" src={userInfo.picture}/>
+								<img src="./ghost.png" className="pull-left"
+									 style={{maxHeight: "30px", float: "left"}}></img></a>
+								<span className="visible-lg visible-md" style={{float: 'left', marginTop: '10px'}}>good ghost </span>
+							<ul className="nav navbar-nav pull-right visible-xs dropdown">
+								<li className="dropbtn">
+									<a href="#">
+										<img className="thumb-friend-small-navbar img-thumbnail img-circle img-responsive" src={userInfo.picture}/>
 									</a>
 								</li>
+								<div className="dropdown-content">
+									<a href="#" onClick={this.logout.bind(this)}>Log out</a>
+								</div>
 							</ul>
 						
 						</div>
-						<ul className="nav navbar-nav navbar-right visible-lg visible-md visible-sm ">
-
-							<li>
-								<a href="#" onClick={this.logout.bind(this)}>
-									<img className="thumb-friend-small img-thumbnail img-circle
-									img-responsive visible-xs visible-sm" src={userInfo.picture}/>
+						<ul className="nav navbar-nav navbar-right visible-lg visible-md visible-sm dropdown">
+							<li className="dropbtn">
+								<a href="#">
+									<img className="thumb-friend-small-navbar img-thumbnail img-circle
+									img-responsive" src={userInfo.picture}/>
 								</a>
+								<div className="dropdown-content">
+									<a href="#" onClick={this.logout.bind(this)}>Log out</a>
+								</div>
 							</li>
 						</ul>
+
 					</div>
 				</nav>
 			</div>

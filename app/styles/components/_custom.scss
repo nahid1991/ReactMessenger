@@ -71,8 +71,8 @@ textarea {
 }
 
 .thumb-friend {
-  width: 8rem;
-  height: 8rem;
+  width: 30%;
+  height: auto;
   /*border-radius: 50%;*/
   float: left;
   margin-right: 10px;
@@ -80,9 +80,18 @@ textarea {
 }
 
 .thumb-friend-small {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   float: left;
+  word-wrap: break-word !important;
+}
+
+.thumb-friend-small-navbar {
+  max-width: 50% !important;
+  height: auto;
+  float: left;
+  margin-bottom: 10px;
+  margin-left: 10px;
   word-wrap: break-word !important;
 }
 
@@ -167,9 +176,6 @@ textarea.custom {
   overflow-y: scroll;
 }
 
-.nav>li>a>img {
-  max-width: 100% !important;
-}
 
 /*-webkit-scrollbar {
     width: 1em;
@@ -222,4 +228,51 @@ textarea.custom {
   body {
     font-size: 2rem;
   }
+}
+
+
+/* Style The Dropdown Button */
+.dropbtn {
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  background-color: #4CAF50 !important;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  margin-top: 30px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropdown {
+  background-color: #3e8e41 !important;
 }

@@ -9,8 +9,10 @@ export class Nav extends React.Component {
 		dispatch(actions.removeFriendsData());
 		localStorage.removeItem('auth_user');
 		localStorage.removeItem('loginData');
-		localStorage.removeItem('friends');
-        localStorage.removeItem('friendId');
+		localStorage.removeItem('friendsPageNumber');
+		localStorage.removeItem('totalPageFriends');
+		localStorage.removeItem('searching');
+		localStorage.removeItem('friendId');
 		window.location.hash = '#/';
 	}
 	

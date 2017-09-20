@@ -10,10 +10,21 @@ export class Friends extends React.Component {
 	componentWillMount(){
 		let {dispatch} = this.props;
 		dispatch(actions.findFriends()).then(function (res) {
-			dispatch(actions.storeFriendsData(res.docs));
-            localStorage.setItem('friendsPageNumber', res.page);
-            localStorage.setItem('totalPageFriends', res.pages);
-            localStorage.setItem('searching', false);
+			if(res.error === 'Token mismatch') {
+				localStorage.removeItem('auth_user');
+				localStorage.removeItem('loginData');
+				localStorage.removeItem('friendsPageNumber');
+				localStorage.removeItem('totalPageFriends');
+				localStorage.removeItem('searching');
+				localStorage.removeItem('friendId');
+				console.log(res.error);
+				window.location.hash = '#/';
+			} else {
+				dispatch(actions.storeFriendsData(res.docs));
+				localStorage.setItem('friendsPageNumber', res.page);
+				localStorage.setItem('totalPageFriends', res.pages);
+				localStorage.setItem('searching', false);
+			}
 		}, function (err) {
 			console.log(err);
 		});

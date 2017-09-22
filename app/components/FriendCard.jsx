@@ -3,18 +3,19 @@ import {connect} from 'react-redux';
 
 let $ = require('jquery');
 
-let store = require('configureStore').configure();
-
 export class FriendCard extends React.Component {
 	componentDidMount() {
 		$('.req').on('click', function () {
-			$(this).closest('a').toggleClass('btn-default btn-primary');
+			let el = $(this);
+			$(this).slideToggle(300);
+			console.log(el.attr('value'));
+			$(this).toggleClass('btn-default btn-primary');
 		});
 	}
 	
 	componentDidUpdate() {
 		$('.req').on('click', function () {
-			$('.req').toggleClass('btn-default btn-primary');
+			$(this).slideToggle(600);
 		});
 	}
 	
@@ -25,7 +26,7 @@ export class FriendCard extends React.Component {
 			if (friend == false && accepted == false) {
 				return (
 					<div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-parent">
-						<a ref="btn" className="btn btn-sm btn-default req text-center">
+						<a ref="btn" value={_id} className="btn btn-sm btn-default req text-center">
 							<i className="fa fa-plus"></i></a>
 					</div>
 				);
@@ -34,7 +35,7 @@ export class FriendCard extends React.Component {
 			if (friend == true && accepted == false) {
                 return (
 					<div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-parent">
-						<a ref="btn" className="btn btn-sm btn-primary req text-center">
+						<a ref="btn" value={_id} className="btn btn-sm btn-primary req text-center">
 							<i className="fa fa-plus"></i></a>
 					</div>
                 );

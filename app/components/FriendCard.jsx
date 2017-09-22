@@ -8,43 +8,49 @@ export class FriendCard extends React.Component {
 		$('.req').on('click', function () {
 			let el = $(this);
 			$(this).slideToggle(300);
-			console.log(el.attr('value'));
-			$(this).toggleClass('btn-default btn-primary');
+			let value = el.attr('value');
+			let iClass = $(this).children('i').attr('class');
+			if(iClass.indexOf('fa-check') >= 0) {
+				$(this).html('<i class="fa fa-plus"></i>Add Friend');
+			} else {
+				$(this).html('<i class="fa fa-check"></i>Pending Request');
+			}
 		});
 	}
 	
 	componentDidUpdate() {
 		$('.req').on('click', function () {
-			$(this).slideToggle(600);
+			$(this).slideToggle(300);
 		});
 	}
 	
 	render() {
-		let {_id, name, picture, friend, accepted} = this.props;
+		let {_id, name, picture, friend, accepted, initiator} = this.props;
 		
 		let friendsButton = () => {
-			if (friend == false && accepted == false) {
+			if (friend === false && accepted === false) {
 				return (
-					<div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-parent">
-						<a ref="btn" value={_id} className="btn btn-sm btn-default req text-center">
-							<i className="fa fa-plus"></i></a>
+					<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 req-parent">
+						<a ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
+							<i className="fa fa-plus"></i>Add Friend</a>
 					</div>
 				);
 			}
 
-			if (friend == true && accepted == false) {
+			if (friend === true && accepted === false && initiator === JSON.parse(localStorage.getItem('auth_user'))._id) {
                 return (
-					<div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-parent">
-						<a ref="btn" value={_id} className="btn btn-sm btn-primary req text-center">
-							<i className="fa fa-plus"></i></a>
+					<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 req-parent">
+						<a ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
+							<i className="fa fa-check"></i>Pending Request</a>
 					</div>
                 );
 			}
 		}
 		
 		return (
+		<div>
 			<div className="row">
-				<div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<a href={"#/tab/" + _id} title={name}>
 						<img
 							className="thumb-friend img-thumbnail img-responsive visible-md visible-lg"
@@ -57,8 +63,11 @@ export class FriendCard extends React.Component {
 						</div>
 					</a>
 				</div>
+			</div>
+			<div className="row">
 				{friendsButton()}
 			</div>
+		</div>
 		);
 	}
 }

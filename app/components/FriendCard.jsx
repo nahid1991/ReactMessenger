@@ -5,7 +5,7 @@ let $ = require('jquery');
 
 export class FriendCard extends React.Component {
 	componentDidMount() {
-		$('.req').unbind().on('click', function (e) {
+		$('.req').off().on('click', function (e) {
 		    e.preventDefault();
 			let el = $(this);
 			let value = el.attr('value');
@@ -15,21 +15,17 @@ export class FriendCard extends React.Component {
                 case 'fa fa-check':
                     console.log(iClass);
                     $(this).slideToggle(300);
-                    $(this).html('<i class="fa fa-plus"></i>Add Friend');
                     $(this).slideToggle(300);
+                    $(this).html('<i class="fa fa-plus"></i>Add Friend');
                     break;
                 case 'fa fa-plus':
                     console.log(iClass);
                     $(this).slideToggle(300);
-                    $(this).html('<i class="fa fa-check"></i>Pending Request');
                     $(this).slideToggle(300);
+                    $(this).html('<i class="fa fa-check"></i>Pending Request');
                     break;
             }
 		});
-	}
-	
-	componentDidUpdate() {
-
 	}
 	
 	render() {

@@ -5,23 +5,31 @@ let $ = require('jquery');
 
 export class FriendCard extends React.Component {
 	componentDidMount() {
-		$('.req').on('click', function () {
+		$('.req').unbind().on('click', function (e) {
+		    e.preventDefault();
 			let el = $(this);
-			$(this).slideToggle(300);
 			let value = el.attr('value');
 			let iClass = $(this).children('i').attr('class');
-			if(iClass.indexOf('fa-check') >= 0) {
-				$(this).html('<i class="fa fa-plus"></i>Add Friend');
-			} else {
-				$(this).html('<i class="fa fa-check"></i>Pending Request');
-			}
+			// noinspection JSAnnotator
+            switch(iClass){
+                case 'fa fa-check':
+                    console.log(iClass);
+                    $(this).slideToggle(300);
+                    $(this).html('<i class="fa fa-plus"></i>Add Friend');
+                    $(this).slideToggle(300);
+                    break;
+                case 'fa fa-plus':
+                    console.log(iClass);
+                    $(this).slideToggle(300);
+                    $(this).html('<i class="fa fa-check"></i>Pending Request');
+                    $(this).slideToggle(300);
+                    break;
+            }
 		});
 	}
 	
 	componentDidUpdate() {
-		$('.req').on('click', function () {
-			$(this).slideToggle(300);
-		});
+
 	}
 	
 	render() {

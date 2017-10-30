@@ -13,16 +13,14 @@ export class FriendCard extends React.Component {
 			// noinspection JSAnnotator
             switch(iClass){
                 case 'fa fa-check':
-                    console.log(iClass);
-                    $(this).slideToggle(300);
-                    $(this).slideToggle(300);
+                    $(this).html('<i class="fa fa-plus"></i>Add Friend');
+                    break;
+                case 'fa fa-spinner fa-spin':
                     $(this).html('<i class="fa fa-plus"></i>Add Friend');
                     break;
                 case 'fa fa-plus':
-                    console.log(iClass);
-                    $(this).slideToggle(300);
-                    $(this).slideToggle(300);
-                    $(this).html('<i class="fa fa-check"></i>Pending Request');
+             		$(this).html('<i class="fa fa-spinner fa-spin"></i>');
+                    // $(this).html('<i class="fa fa-check"></i>Pending Request');
                     break;
             }
 		});
@@ -35,8 +33,8 @@ export class FriendCard extends React.Component {
 			if (friend === false && accepted === false) {
 				return (
 					<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 req-parent">
-						<a ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
-							<i className="fa fa-plus"></i>Add Friend</a>
+						<button ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
+							<i className="fa fa-plus"></i>Add Friend</button>
 					</div>
 				);
 			}
@@ -44,8 +42,8 @@ export class FriendCard extends React.Component {
 			if (friend === true && accepted === false && initiator === JSON.parse(localStorage.getItem('auth_user'))._id) {
                 return (
 					<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 req-parent">
-						<a ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
-							<i className="fa fa-check"></i>Pending Request</a>
+						<button ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
+							<i className="fa fa-check"></i>Pending Request</button>
 					</div>
                 );
 			}

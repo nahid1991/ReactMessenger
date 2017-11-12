@@ -80,7 +80,7 @@ textarea {
 }
 
 .thumb-friend-small {
-  max-width: 50% !important;
+  max-width: 50px !important;
   height: auto;
   float: left;
   word-wrap: break-word !important;
@@ -292,4 +292,32 @@ textarea.custom {
   color: #333;
   background-color: #CCCC99;
   border-color: #ccc;
+}
+
+.req {
+  position: relative;
+  right: 30%;
+  font-size: 150% !important;
+  border-radius: 20%;
+  background-color: #990033;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.req:hover {
+  color: #f0ad4e;
+}
+
+.friend-card {
+  padding-right: -5px !important;
+  margin-right: 0px !important;
+}
+
+hr {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.req-btn {
+  padding-left: 0px !important;
 }

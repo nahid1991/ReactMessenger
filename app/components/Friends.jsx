@@ -73,7 +73,7 @@ export class Friends extends React.Component {
 		}
 		
 		return (
-			<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 custom-div pre-scrollable border-line">
+			<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4 custom-div pre-scrollable border-line">
 				<form>
 					<div className="form-group">
 						<input type="text" ref="search" className="form-control" onKeyUp={this.searchFriends.bind(this)} placeholder="Search"></input>

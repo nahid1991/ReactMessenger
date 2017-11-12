@@ -21,7 +21,7 @@ export class FriendCard extends React.Component {
                     }, function(err) {
                         console.log(err);
                     });
-                    $(this).html('<i class="fa fa-plus"></i>Add Friend');
+                    $(this).html('<i class="fa fa-plus"></i>');
                     break;
                 case 'fa fa-plus':
                     $(this).html('<i class="fa fa-spinner fa-spin"></i>');
@@ -29,7 +29,7 @@ export class FriendCard extends React.Component {
                     }, function(err) {
                         console.log(err);
                     });
-                    $(this).html('<i class="fa fa-check"></i>Pending Request');
+                    $(this).html('<i class="fa fa-check"></i>');
                     break;
             }
 		});
@@ -41,19 +41,15 @@ export class FriendCard extends React.Component {
 		let friendsButton = () => {
 			if (friend === false && accepted === false) {
 				return (
-					<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 req-parent">
-						<button ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
-							<i className="fa fa-plus"/>Add Friend</button>
-					</div>
+                    <span ref="btn" value={_id} className="req btn btn-sm">
+                        <i className="fa fa-plus"/></span>
 				);
 			}
 
 			if (friend === true && accepted === false && initiator === JSON.parse(localStorage.getItem('auth_user'))._id) {
                 return (
-					<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 req-parent">
-						<button ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
-							<i className="fa fa-check"/>Pending Request</button>
-					</div>
+                    <span ref="btn" value={_id} className="req btn btn-sm">
+                        <i className="fa fa-check"/></span>
                 );
 			}
 		};
@@ -61,23 +57,22 @@ export class FriendCard extends React.Component {
 		return (
 		<div>
 			<div className="row">
-				<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<a href={"#/tab/" + _id} title={name}>
-						<img
-							className="thumb-friend img-thumbnail img-responsive visible-md visible-lg"
-							src={picture}/>
-						<img
-							className="thumb-friend-small img-thumbnail img-responsive visible-xs visible-sm"
-							src={picture}/>
-						<div>
-							<p className="custom-name-top">{name}</p>
-						</div>
-					</a>
-				</div>
+                <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 friend-card">
+                    <a href={"#/tab/" + _id} title={name}>
+                        <img
+                            className="thumb-friend img-thumbnail img-responsive visible-md visible-lg"
+                            src={picture}/>
+                        <img
+                            className="thumb-friend-small img-thumbnail img-responsive visible-xs visible-sm"
+                            src={picture}/>
+                        <p className="custom-name-top">{name}</p>
+                    </a>
+                </div>
+                <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-btn">
+                    {friendsButton()}
+                </div>
 			</div>
-			<div className="row">
-				{friendsButton()}
-			</div>
+            <hr/>
 		</div>
 		);
 	}

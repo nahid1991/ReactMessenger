@@ -60,7 +60,7 @@ export class Messages extends React.Component {
     render() {
         return (
             <div ref={(el) => {this.messagesContainer = el;}}
-                 className="col-xs-6 col-sm-6 col-md-6 col-lg-6 custom-div messages pre-scrollable border-line">
+                 className="col-xs-5 col-sm-5 col-md-5 col-lg-5 custom-div messages pre-scrollable border-line">
             </div>
         );
     }

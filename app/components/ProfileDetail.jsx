@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Navbar, Button, ButtonToolbar} from 'react-bootstrap';
 import FriendInfo from 'FriendInfo';
 import {connect} from 'react-redux';
 
@@ -9,7 +8,7 @@ export class ProfileDetail extends React.Component {
     render() {
         return (
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 custom-div pre-scrollable">
-                <FriendInfo userInfo={this.props.userInfo}/>
+                <FriendInfo friendInfo={this.props.friendInfo === null? null:this.props.friendInfo}/>
             </div>
         );
     }

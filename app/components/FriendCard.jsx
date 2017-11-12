@@ -1,10 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as actions from 'actions';
 
 let $ = require('jquery');
 
 export class FriendCard extends React.Component {
 	componentDidMount() {
+        let {dispatch} = this.props;
 		$('.req').off().on('click', function (e) {
 		    e.preventDefault();
 			let el = $(this);
@@ -13,14 +15,21 @@ export class FriendCard extends React.Component {
 			// noinspection JSAnnotator
             switch(iClass){
                 case 'fa fa-check':
-                    $(this).html('<i class="fa fa-plus"></i>Add Friend');
-                    break;
-                case 'fa fa-spinner fa-spin':
+                    $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+                    dispatch(actions.removeFriend(value)).then(function(response){
+                        console.log(JSON.stringify(response));
+                    }, function(err) {
+                        console.log(err);
+                    });
                     $(this).html('<i class="fa fa-plus"></i>Add Friend');
                     break;
                 case 'fa fa-plus':
-             		$(this).html('<i class="fa fa-spinner fa-spin"></i>');
-                    // $(this).html('<i class="fa fa-check"></i>Pending Request');
+                    $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+                    dispatch(actions.addFriend(value)).then(function(response){
+                    }, function(err) {
+                        console.log(err);
+                    });
+                    $(this).html('<i class="fa fa-check"></i>Pending Request');
                     break;
             }
 		});
@@ -34,7 +43,7 @@ export class FriendCard extends React.Component {
 				return (
 					<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 req-parent">
 						<button ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
-							<i className="fa fa-plus"></i>Add Friend</button>
+							<i className="fa fa-plus"/>Add Friend</button>
 					</div>
 				);
 			}
@@ -43,11 +52,11 @@ export class FriendCard extends React.Component {
                 return (
 					<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 req-parent">
 						<button ref="btn" value={_id} className="btn btn-sm btn-custom-two req text-center">
-							<i className="fa fa-check"></i>Pending Request</button>
+							<i className="fa fa-check"/>Pending Request</button>
 					</div>
                 );
 			}
-		}
+		};
 		
 		return (
 		<div>

@@ -44,6 +44,14 @@ export class Chatroom extends React.Component {
     }
 
     render() {
+        let friends = JSON.parse(localStorage.getItem('friends'));
+        let friendId = localStorage.getItem('friendId');
+        let friendInfo = null;
+        if(friendId !== 'undefined') {
+            friendInfo = friends.filter(function(friend) {
+                return friend._id === friendId;
+            });
+        }
         return (
             <div>
                 <Nav socket={socket} userInfo={JSON.parse(localStorage.getItem('auth_user'))}/>
@@ -52,7 +60,7 @@ export class Chatroom extends React.Component {
                         <div className="row">
                             <Friends socket={socket} friendsInfo={this.props.friendsInfo}/>
                             <Messages socket={socket} friendId={this.props.friendId}/>
-                            <ProfileDetail socket={socket} userInfo={this.props.userInfo}/>
+                            <ProfileDetail socket={socket} friendInfo={friendInfo}/>
                         </div>
                     </div>
                 </div>

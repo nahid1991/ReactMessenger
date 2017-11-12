@@ -144,7 +144,7 @@ export var facebookLogin = (id, name, accessToken) => {
 			});
 		});
 	}
-}
+};
 
 
 export var users = () => {
@@ -157,7 +157,7 @@ export var users = () => {
 			});
 		});
 	}
-}
+};
 
 export var searchPeople = (letters, page) => {
 	return (dispatch, getState) => {
@@ -169,7 +169,7 @@ export var searchPeople = (letters, page) => {
 			})
 		});
 	}
-}
+};
 
 export var findFriends = () => {
 	return(dispatch, getState) => {
@@ -181,7 +181,7 @@ export var findFriends = () => {
 			});
 		});
 	}
-}
+};
 
 export var googleLogin = (accessToken) => {
 	return (dispatch, getState) => {
@@ -198,39 +198,63 @@ export var googleLogin = (accessToken) => {
 			});
 		});
 	}
-}
+};
+
+export var addFriend = (id) => {
+	return (dispatch, getState) => {
+		return new Promise((resolve, reject) => {
+			ChatAPI.addFriend(id).then(function(response) {
+				resolve(response);
+			}, function(err){
+				reject(new Error(err));
+			});
+		});
+	}
+};
+
+export var removeFriend = (id) => {
+    return (dispatch, getState) => {
+        return new Promise((resolve, reject) => {
+            ChatAPI.removeFriend(id).then(function(response) {
+                resolve(response);
+            }, function(err){
+                reject(new Error(err));
+            });
+        });
+    }
+};
 
 export var getUserData = (auth_user) => {
 	return (dispatch, getState) => {
 		dispatch(keepUserData(auth_user));
 	}
-}
+};
 
 export var keepUserData = (auth_user) => {
 	return {
 		type: 'KEEP_USER_DATA',
 		auth_user
 	}
-}
+};
 
 export var removeUserData = () => {
 	return {
 		type: 'REMOVE_USER_DATA'
 	}
-}
+};
 
 export var keepFriendsData = (friends) => {
 	return (dispatch, getState) => {
 		dispatch(storeFriendsData(friends));
 	}
-}
+};
 
 export var storeFriendId = (id) => {
 	return {
 		type: 'SET_FRIEND_ID',
 		id
 	}
-}
+};
 
 
 export var storeFriendsData = (friends) => {
@@ -238,10 +262,10 @@ export var storeFriendsData = (friends) => {
 		type: 'KEEP_FRIENDS_DATA',
 		friends
 	}
-}
+};
 
 export var removeFriendsData = () => {
 	return {
 		type: 'REMOVE_FRIENDS_DATA'
 	}
-}
+};

@@ -21,6 +21,7 @@ export class Friends extends React.Component {
 				window.location.hash = '#/';
 			} else {
 				dispatch(actions.storeFriendsData(res.docs));
+				localStorage.setItem('friends', JSON.stringify(res.docs));
 				localStorage.setItem('friendsPageNumber', res.page);
 				localStorage.setItem('totalPageFriends', res.pages);
 				localStorage.setItem('searching', false);

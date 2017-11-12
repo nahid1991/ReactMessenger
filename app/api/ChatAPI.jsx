@@ -6,11 +6,11 @@ const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token
 
 module.exports = {
 	searchFriends: function() {
-		var requestUrl = `${CHAT_SERVER}/users/friends?page=1`;
+		let requestUrl = `${CHAT_SERVER}/users/friends?page=1`;
 		
 		return new Promise((resolve, reject) => {
-			var token = localStorage.getItem('loginData');
-			var config = {
+			let token = localStorage.getItem('loginData');
+			let config = {
 				headers: {
 					'Accept': '*/*',
 					'Authorization': "Token " + token
@@ -27,10 +27,10 @@ module.exports = {
 	
 	searchPeople: function (letters = '', page = 1) {
 
-		var requestUrl = `${CHAT_SERVER}/people/${letters}?page=${page}`;
+		let requestUrl = `${CHAT_SERVER}/people/${letters}?page=${page}`;
 		return new Promise((resolve, reject) => {
-            var token = localStorage.getItem('loginData');
-            var config = {
+            let token = localStorage.getItem('loginData');
+            let config = {
                 headers: {
                     'Accept': '*/*',
                     'Authorization': "Token " + token
@@ -48,17 +48,17 @@ module.exports = {
 	},
 	
 	friends: function (pageNumber) {
-		var page
+		let page
 		if(pageNumber == 'undefined'){
 			page = parseInt(1);
 		} else {
 			page = parseInt(pageNumber);
 		}
-		var requestUrl = `${CHAT_SERVER}/users/?page=${page}`;
+		let requestUrl = `${CHAT_SERVER}/users/?page=${page}`;
 		return new Promise((resolve, reject) => {
-			var token = localStorage.getItem('loginData');
+			let token = localStorage.getItem('loginData');
 			// console.log(token);
-			var config = {
+			let config = {
 				headers: {
 					'Accept': '*/*',
 					'Authorization': "Token " + token
@@ -76,18 +76,18 @@ module.exports = {
 	},
 	
 	facebookLogin: function (id, name, accessToken) {
-		var requestUrl = `${CHAT_SERVER}/users/facebook_login/`;
+		let requestUrl = `${CHAT_SERVER}/users/facebook_login/`;
 		return new Promise((resolve, reject) => {
 			this.facebookInfo(accessToken).then(function (response) {
 				try {
-					var postData = {
+					let postData = {
 						user_id: id,
 						name: name,
 						access_key: accessToken,
 						email: response + '@facebook.com'
 					};
 					
-					var config = {
+					let config = {
 						headers: {
 							'Content-Type': 'application/json',
 							'Accept': '*/*'
@@ -109,18 +109,18 @@ module.exports = {
 	},
 	
 	googleLogin: function (accessToken) {
-		var requestUrl = `${CHAT_SERVER}/users/google_login/`;
+		let requestUrl = `${CHAT_SERVER}/users/google_login/`;
 		
 		return new Promise((resolve, reject) => {
 			this.googleInfo(accessToken).then(function (response) {
-				var postData = {
+				let postData = {
 					user_id: response.sub,
 					name: response.name,
 					access_key: accessToken,
 					email: response.hasOwnProperty('email') ? response.email:response.sub+'@google.com',
 					image_url: response.picture
 				};
-				var config = {
+				let config = {
 					headers: {
 						'Content-Type': 'application/json',
 						'Accept': '*/*'
@@ -140,10 +140,10 @@ module.exports = {
 	
 	
 	getUserData: function () {
-		var requestUrl = `${CHAT_SERVER}/users/user_info/`;
-		var token = localStorage.getItem('loginData');
+		let requestUrl = `${CHAT_SERVER}/users/user_info/`;
+		let token = localStorage.getItem('loginData');
 		// console.log(token);
-		var config = {
+		let config = {
 			headers: {
 				'Accept': '*/*',
 				'Authorization': "Token " + token
@@ -166,7 +166,7 @@ module.exports = {
 	
 	facebookInfo: function (accessToken) {
 		return new Promise((resolve, reject) => {
-			var requestUrl = `${FACEBOOK_GRAPH}${accessToken}`;
+			let requestUrl = `${FACEBOOK_GRAPH}${accessToken}`;
 			axios.get(requestUrl).then(function (res) {
 				resolve(res.data.id);
 			}, function (err) {
@@ -179,7 +179,7 @@ module.exports = {
 	
 	googleInfo: function (accessToken) {
 		return new Promise((resolve, reject) => {
-			var requestUrl = `${GOOGLE_GRAPH}${accessToken}`;
+			let requestUrl = `${GOOGLE_GRAPH}${accessToken}`;
 			axios.get(requestUrl).then(function (res) {
 				resolve(res.data);
 			}, function (err) {
@@ -187,5 +187,43 @@ module.exports = {
 			});
 		});
 		
-	}
-}
+	},
+
+	addFriend: function (id) {
+		return new Promise((resolve, reject) => {
+            let requestUrl = `${CHAT_SERVER}/users/make_friends/${id}`;
+            let token = localStorage.getItem('loginData');
+            let config = {
+                headers: {
+                    'Accept': '*/*',
+                    'Authorization': "Token " + token
+                }
+            };
+
+            axios.get(requestUrl, config).then(function (res){
+                resolve(res.data);
+            }, function(err){
+                reject(new Error(err));
+            });
+		});
+	},
+
+    removeFriend: function (id) {
+        return new Promise((resolve, reject) => {
+            let requestUrl = `${CHAT_SERVER}/users/remove_friends/${id}`;
+            let token = localStorage.getItem('loginData');
+            let config = {
+                headers: {
+                    'Accept': '*/*',
+                    'Authorization': "Token " + token
+                }
+            };
+
+            axios.get(requestUrl, config).then(function (res){
+                resolve(res.data);
+            }, function(err){
+                reject(new Error(err));
+            });
+        });
+    }
+};

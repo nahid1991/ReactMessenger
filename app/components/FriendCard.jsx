@@ -38,14 +38,30 @@ export class FriendCard extends React.Component {
                     break;
             }
 		});
-
+		
+		$('.req-accept').off().on('click', function (e) {
+			e.preventDefault();
+			let el = $(this);
+			let value = el.attr('value');
+			// noinspection JSAnnotator
+			$(this).parent().css('display', 'none');
+			let user = JSON.parse(localStorage.getItem('auth_user'))._id;
+			let formattedData = {
+				sender: user,
+				receiver: value
+			};
+			
+			socket.emit('acceptFriend', formattedData, function(success){
+				console.log(success.success);
+			});
+		});
+		
         $('.req-reject').off().on('click', function (e) {
             e.preventDefault();
             let el = $(this);
             let value = el.attr('value');
-            let iClass = $(this).children('i').attr('class');
             // noinspection JSAnnotator
-            $(this).remove('fa');
+            $(this).parent().css('display', 'none');
             let user = JSON.parse(localStorage.getItem('auth_user'))._id;
             let formattedData = {
                 sender: user,

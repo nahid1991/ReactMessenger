@@ -297,11 +297,45 @@ textarea.custom {
 .req {
   position: relative;
   right: 30%;
-  font-size: 150% !important;
+  line-height: 0px !important;
+  margin: 0px !important;
+  font-size: 100% !important;
   border-radius: 20%;
-  background-color: #990033;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #f0ad4e;
   cursor: pointer;
+}
+
+.req-reject {
+  position: relative;
+  right: 30%;
+  line-height: 0px !important;
+  margin: 0px !important;
+  font-size: 100% !important;
+  border-radius: 20%;
+  background-color: #ffffff;
+  color: #f0ad4e;
+  cursor: pointer;
+}
+
+.req-reject:hover {
+  color: #000000;
+}
+
+.req-accept {
+  position: relative;
+  right: 30%;
+  line-height: 0px !important;
+  margin: 0px !important;
+  font-size: 100% !important;
+  border-radius: 20%;
+  background-color: #ffffff;
+  color: #f0ad4e;
+  cursor: pointer;
+}
+
+.req-accept:hover {
+  color: #000000;
 }
 
 .req:hover {

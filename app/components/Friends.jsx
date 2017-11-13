@@ -58,6 +58,7 @@ export class Friends extends React.Component {
 	}
 	
 	render() {
+		let {socket} = this.props;
 		let renderFriends = () => {
 			let {friendsInfo} = this.props;
 			if (friendsInfo.length == 0) {
@@ -67,7 +68,7 @@ export class Friends extends React.Component {
 			}
 			return friendsInfo.map((friends) => {
 				return (
-					<FriendCard key={friends._id} {...friends}/>
+					<FriendCard socket={socket} key={friends._id} {...friends}/>
 				);
 			});
 		}

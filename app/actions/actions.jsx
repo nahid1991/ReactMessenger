@@ -269,3 +269,10 @@ export var removeFriendsData = () => {
 		type: 'REMOVE_FRIENDS_DATA'
 	}
 };
+
+export var updateFriendsData = (id) => {
+	return {
+		type: 'UPDATE_FRIEND_DATA',
+		id
+	}
+};

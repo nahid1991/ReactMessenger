@@ -43,6 +43,7 @@ export class FriendCard extends React.Component {
 			e.preventDefault();
 			let el = $(this);
 			let value = el.attr('value');
+			dispatch(actions.updateFriendsData(value));
 			// noinspection JSAnnotator
 			$(this).parent().css('display', 'none');
 			let user = JSON.parse(localStorage.getItem('auth_user'))._id;
@@ -50,7 +51,7 @@ export class FriendCard extends React.Component {
 				sender: user,
 				receiver: value
 			};
-			
+
 			socket.emit('acceptFriend', formattedData, function(success){
 				console.log(success.success);
 			});
@@ -97,9 +98,9 @@ export class FriendCard extends React.Component {
                     return (
                         <span>
                             <span ref="btn" value={_id} className="req-accept btn btn-sm">
-                            <i className="fa fa-thumbs-up"/></span>
+                            <i className="fa fa-check" /></span>
                             <span ref="btn" value={_id} className="req-reject btn btn-sm">
-                            <i className="fa fa-thumbs-down"/></span>
+                            <i className="fa fa-times" /></span>
                         </span>
                     );
                 }

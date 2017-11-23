@@ -43,7 +43,7 @@ export class FriendCard extends React.Component {
 			e.preventDefault();
 			let el = $(this);
 			let value = el.attr('value');
-			dispatch(actions.updateFriendsData(value));
+			dispatch(actions.acceptFriend(value));
 			// noinspection JSAnnotator
 			$(this).parent().css('display', 'none');
 			let user = JSON.parse(localStorage.getItem('auth_user'))._id;
@@ -61,8 +61,9 @@ export class FriendCard extends React.Component {
             e.preventDefault();
             let el = $(this);
             let value = el.attr('value');
+            dispatch(actions.rejectFriend(value));
             // noinspection JSAnnotator
-            $(this).parent().css('display', 'none');
+            $(this).parent().parent().parent().css('display', 'none');
             let user = JSON.parse(localStorage.getItem('auth_user'))._id;
             let formattedData = {
                 sender: user,
@@ -144,8 +145,8 @@ export class FriendCard extends React.Component {
                 <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 req-btn">
                     {friendsButton()}
                 </div>
+                <hr/>
 			</div>
-            <hr/>
 		</div>
 		);
 	}

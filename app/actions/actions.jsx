@@ -270,9 +270,23 @@ export var removeFriendsData = () => {
 	}
 };
 
-export var updateFriendsData = (id) => {
+export var acceptFriend = (id) => {
 	return {
-		type: 'UPDATE_FRIEND_DATA',
+		type: 'ACCEPT_FRIEND',
 		id
+	}
+};
+
+export var rejectFriend = (id) => {
+    return {
+        type: 'REJECT_FRIEND',
+        id
+    }
+};
+
+export var addRequest = (data) => {
+	return {
+		type: 'ADD_REQUEST',
+		data
 	}
 };

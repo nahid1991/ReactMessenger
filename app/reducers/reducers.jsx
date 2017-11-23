@@ -96,6 +96,7 @@ export var userInfoReducer = (state = {}, action) => {
 
 
 export var friendsInfoReducer = (state = [], action) => {
+    let newState = null;
     switch (action.type) {
         case 'KEEP_FRIENDS_DATA':
             // console.log(action.auth_user);
@@ -103,10 +104,22 @@ export var friendsInfoReducer = (state = [], action) => {
         case 'REMOVE_FRIENDS_DATA':
             // console.log(action.auth_user);
             return state;
-        case 'UPDATE_FRIEND_DATA':
+        case 'ACCEPT_FRIEND':
             return state.map(function(friend) {
                 return (friend._id === action.id) ? {...friend, accepted: true} : friend;
             });
+        case 'REJECT_FRIEND':
+            newState = state;
+            for(let i = 0; i < newState.length; i++) {
+                if(newState[i]._id === action.id) {
+                    newState.splice(i, 1);
+                }
+            }
+            return newState;
+        case 'ADD_REQUEST':
+            newState = state;
+            newState.unshift(action.data);
+            return newState;
         default:
             return state;
     }
@@ -118,7 +131,6 @@ export var friendIdReducer = (state = '', action) => {
             return action.id;
         default:
             return state;
-    }
-    ;
+    };
 };
 

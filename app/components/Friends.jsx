@@ -61,10 +61,13 @@ export class Friends extends React.Component {
         let {dispatch, socket} = this.props;
         socket.on(JSON.parse(localStorage.getItem('auth_user'))._id + '-receivedRequest', (data) => {
             // dispatch(actions.addRequest(data));
-            data.friend = true;
-            data.accepted = false;
-            data.initiator = data._id;
-            data.chat_room = JSON.parse(localStorage.getItem('auth_user'))._id + '-' + data._id;
+            if(!data.hasOwnProperty('friend')) {
+				data.friend = true;
+				data.accepted = false;
+				data.initiator = data._id;
+				data.chat_room = JSON.parse(localStorage.getItem('auth_user'))._id + '-' + data._id;
+            }
+            
             dispatch(actions.addRequest(data));
             // this.setState(this.state);
             this.forceUpdate();

@@ -44,7 +44,8 @@ export class Chatroom extends React.Component {
     }
 
     render() {
-        let friends = JSON.parse(localStorage.getItem('friends'));
+        let {friendsInfo} = this.props;
+        let friends = friendsInfo;
         let friendId = localStorage.getItem('friendId');
         let friendInfo = null;
         if(friendId !== 'undefined') {
@@ -76,6 +77,6 @@ const mapStateToProps = function (store) {
         userInfo: store.userInfo,
         friendId: store.friendId
     }
-}
+};
 
 export default connect(mapStateToProps)(Chatroom);

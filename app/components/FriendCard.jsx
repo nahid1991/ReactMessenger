@@ -6,7 +6,7 @@ let $ = require('jquery');
 
 export class FriendCard extends React.Component {
 	componentDidMount() {
-        let {dispatch, socket} = this.props;
+        let {dispatch, socket, userInfo} = this.props;
 		$('.req').off().on('click', function (e) {
 		    e.preventDefault();
 			let el = $(this);
@@ -47,9 +47,14 @@ export class FriendCard extends React.Component {
 			// noinspection JSAnnotator
 			$(this).parent().css('display', 'none');
 			let user = JSON.parse(localStorage.getItem('auth_user'))._id;
+			let friendInformation = userInfo[0];
+			friendInformation.friend = true;
+			friendInformation.accepted = true;
+			friendInformation.chat_room = value+'-'+user;
 			let formattedData = {
 				sender: user,
-				receiver: value
+				receiver: value,
+				user_info: friendInformation
 			};
 
 			socket.emit('acceptFriend', formattedData, function(success){
@@ -152,4 +157,9 @@ export class FriendCard extends React.Component {
 	}
 }
 
-export default connect()(FriendCard);
+const mapStateToProps = function (store) {
+	return {
+		userInfo: store.userInfo
+	};
+};
+export default connect(mapStateToProps)(FriendCard);

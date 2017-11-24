@@ -2,8 +2,6 @@ import React from 'react';
 import FriendInfo from 'FriendInfo';
 import {connect} from 'react-redux';
 
-let store = require('configureStore').configure();
-
 export class ProfileDetail extends React.Component {
     render() {
         return (
@@ -17,7 +15,7 @@ export class ProfileDetail extends React.Component {
 
 const mapStateToProps = function (store) {
     return {
-        userInfo: store.userInfo
+        friendsInfo: store.friendsInfo
     }
 }
 export default connect(mapStateToProps)(ProfileDetail);

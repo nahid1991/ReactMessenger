@@ -109,12 +109,9 @@ export var friendsInfoReducer = (state = [], action) => {
                 return (friend._id === action.id) ? {...friend, accepted: true} : friend;
             });
         case 'REJECT_FRIEND':
-            newState = state;
-            for(let i = 0; i < newState.length; i++) {
-                if(newState[i]._id === action.id) {
-                    newState.splice(i, 1);
-                }
-            }
+            newState = state.filter(function(st) {
+                return st._id != action.id;
+            });
             return newState;
         case 'ADD_REQUEST':
             newState = state;

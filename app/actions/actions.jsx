@@ -143,7 +143,7 @@ export var facebookLogin = (id, name, accessToken) => {
 				reject(new Error(err));
 			});
 		});
-	}
+	};
 };
 
 
@@ -168,7 +168,7 @@ export var searchPeople = (letters, page) => {
 				reject(new Error(err));
 			})
 		});
-	}
+	};
 };
 
 export var findFriends = () => {
@@ -180,7 +180,7 @@ export var findFriends = () => {
 				reject(new Error(err));
 			});
 		});
-	}
+	};
 };
 
 export var googleLogin = (accessToken) => {
@@ -197,7 +197,7 @@ export var googleLogin = (accessToken) => {
 				reject(new Error(err));
 			});
 		});
-	}
+	};
 };
 
 export var addFriend = (id) => {
@@ -209,7 +209,7 @@ export var addFriend = (id) => {
 				reject(new Error(err));
 			});
 		});
-	}
+	};
 };
 
 export var removeFriend = (id) => {
@@ -221,7 +221,7 @@ export var removeFriend = (id) => {
                 reject(new Error(err));
             });
         });
-    }
+    };
 };
 
 export var getUserData = (auth_user) => {
@@ -234,13 +234,13 @@ export var keepUserData = (auth_user) => {
 	return {
 		type: 'KEEP_USER_DATA',
 		auth_user
-	}
+	};
 };
 
 export var removeUserData = () => {
 	return {
 		type: 'REMOVE_USER_DATA'
-	}
+	};
 };
 
 export var keepFriendsData = (friends) => {
@@ -253,7 +253,7 @@ export var storeFriendId = (id) => {
 	return {
 		type: 'SET_FRIEND_ID',
 		id
-	}
+	};
 };
 
 
@@ -261,32 +261,32 @@ export var storeFriendsData = (friends) => {
 	return {
 		type: 'KEEP_FRIENDS_DATA',
 		friends
-	}
+	};
 };
 
 export var removeFriendsData = () => {
 	return {
 		type: 'REMOVE_FRIENDS_DATA'
-	}
+	};
 };
 
 export var acceptFriend = (id) => {
 	return {
 		type: 'ACCEPT_FRIEND',
 		id
-	}
+	};
 };
 
 export var rejectFriend = (id) => {
     return {
         type: 'REJECT_FRIEND',
         id
-    }
+    };
 };
 
 export var addRequest = (data) => {
 	return {
 		type: 'ADD_REQUEST',
 		data
-	}
+	};
 };

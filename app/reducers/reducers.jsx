@@ -127,6 +127,17 @@ export var friendsInfoReducer = (state = [], action) => {
                 return friend;
             });
             return newState;
+        case 'SEND_REQUEST':
+            newState = state;
+            newState = newState.map(function(friend){
+                if(friend._id == action.id) {
+                    friend.friend = true;
+                    friend.accepted = false;
+                    friend.initiator = action.user;
+                }
+                return friend;
+            });
+            return newState;
         default:
             return state;
     }

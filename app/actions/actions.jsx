@@ -297,3 +297,11 @@ export var removeFriendReq = (id) => {
 		id
 	}
 }
+
+export var sendFriendReq = (id, user) => {
+	return {
+		type: 'SEND_REQUEST',
+		id,
+		user
+	}
+}

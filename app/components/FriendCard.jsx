@@ -1,84 +1,63 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
+import { userInfo } from 'os';
 
 let $ = require('jquery');
 
 export class FriendCard extends React.Component {
-	componentDidMount() {
+    acceptRequest = (id) => {
         let {dispatch, socket, userInfo} = this.props;
-		// $('.req').off().on('click', function (e) {
-		//     e.preventDefault();
-		// 	let el = $(this);
-		// 	let value = el.attr('value');
-		// 	let iClass = $(this).children('i').attr('class');
-		// 	// noinspection JSAnnotator
+        let user = userInfo[0]._id;
+        let friendInformation = userInfo[0];
+        friendInformation.friend = true;
+        friendInformation.accepted = true;
+        friendInformation.chat_room = id+'-'+user;
+        let formattedData = {
+            sender: user,
+            receiver: id,
+            user_info: friendInformation
+        };
 
-        //     let user = JSON.parse(localStorage.getItem('auth_user'))._id;
-            // let formattedData = {
-            //     sender: user,
-            //     receiver: value
-            // };
-
-        //     $(this).html('<i class="fa fa-spinner fa-spin"></i>');
-        //     switch(iClass){
-        //         case 'fa fa-check':
-        //             socket.emit('removeFriend', formattedData, function(success){
-        //                 console.log(success.success);
-        //             });
-
-        //             $(this).html('<i class="fa fa-plus"></i>');
-        //             break;
-        //         case 'fa fa-plus':
-        //             socket.emit('addFriend', formattedData, function(success){
-        //                 console.log(success.success);
-        //             });
-        //             $(this).html('<i class="fa fa-check"></i>');
-
-        //             break;
-        //     }
-		// });
-		
-		$('.req-accept').off().on('click', function (e) {
-			e.preventDefault();
-			let el = $(this);
-			let value = el.attr('value');
-			dispatch(actions.acceptFriend(value));
-			// noinspection JSAnnotator
-			$(this).parent().css('display', 'none');
-			let user = JSON.parse(localStorage.getItem('auth_user'))._id;
-			let friendInformation = userInfo[0];
-			friendInformation.friend = true;
-			friendInformation.accepted = true;
-			friendInformation.chat_room = value+'-'+user;
-			let formattedData = {
-				sender: user,
-				receiver: value,
-				user_info: friendInformation
-			};
-
-			socket.emit('acceptFriend', formattedData, function(success){
-				console.log(success.success);
-			});
-		});
-		
-        $('.req-reject').off().on('click', function (e) {
-            e.preventDefault();
-            let el = $(this);
-            let value = el.attr('value');
-            dispatch(actions.rejectFriend(value));
-            // noinspection JSAnnotator
-            $(this).parent().parent().parent().css('display', 'none');
-            let user = JSON.parse(localStorage.getItem('auth_user'))._id;
-            let formattedData = {
-                sender: user,
-                receiver: value
-            };
-
-            socket.emit('removeFriend', formattedData, function(success){
-                console.log(success.success);
-            });
+        socket.emit('acceptFriend', formattedData, function(success){
+            console.log(success.success);
         });
+
+        dispatch(actions.acceptFriend(id));
+    }
+
+    rejectRequest = (id) => {
+        let {dispatch, socket, userInfo} = this.props;
+        let user = userInfo[0]._id;
+        let friendInformation = userInfo[0];
+        friendInformation.friend = true;
+        friendInformation.accepted = true;
+        friendInformation.chat_room = id+'-'+user;
+        let formattedData = {
+            sender: user,
+            receiver: id,
+            user_info: friendInformation
+        };
+
+        socket.emit('removeFriend', formattedData, function(success){
+            console.log(success.success);
+        });
+
+        dispatch(actions.rejectFriend(id));
+    }
+
+    sendRequest = (id) => {
+        let {dispatch, userInfo, socket} = this.props;
+        let user = userInfo[0]._id;
+        let formattedData = {
+            sender: user,
+            receiver: id
+        };
+
+        socket.emit('addFriend', formattedData, function(success){
+            console.log(success.success);
+        });
+        dispatch(actions.sendFriendReq(id, user));
     }
     
     cancelRequest = (id) => {
@@ -88,37 +67,38 @@ export class FriendCard extends React.Component {
             sender: user,
             receiver: id
         };
+
         socket.emit('removeFriend', formattedData, function(success){
             console.log(success.success);
         });
-        dispatch(actions.removeFriendReq(id));
+        dispatch(actions.removeFriendReq(id, user));
     }
 
 	render() {
-		let {_id, name, picture, friend, accepted, initiator} = this.props;
+		let {_id, name, picture, friend, accepted, userInfo, initiator} = this.props;
 
 		let friendsButton = () => {
 			if (friend === false && accepted === false) {
 				return (
-                    <span ref="btn" onClick={() => this.cancelRequest(_id)} className="req btn btn-sm">
+                    <span ref="btn" onClick={() => this.sendRequest(_id)} className="req btn btn-sm">
                         <i className="fa fa-plus"/></span>
 				);
 			}
 
 			if (friend === true && accepted === false) {
-                if(initiator == JSON.parse(localStorage.getItem('auth_user'))._id) {
+                if(initiator == userInfo[0]._id) {
                     return (
                         <span ref="btn" onClick={() => this.cancelRequest(_id)} className="req btn btn-sm">
                         <i className="fa fa-check"/></span>
                     );
                 }
 
-                if(initiator !== JSON.parse(localStorage.getItem('auth_user'))._id) {
+                if(initiator !== userInfo[0]._id) {
                     return (
                         <span>
-                            <span ref="btn" value={_id} className="req-accept btn btn-sm">
+                            <span ref="btn" onClick={() => this.acceptRequest(_id)} className="req-accept btn btn-sm">
                             <i className="fa fa-check" /></span>
-                            <span ref="btn" value={_id} className="req-reject btn btn-sm">
+                            <span ref="btn" onClick={() => this.rejectRequest(_id)} className="req-reject btn btn-sm">
                             <i className="fa fa-times" /></span>
                         </span>
                     );

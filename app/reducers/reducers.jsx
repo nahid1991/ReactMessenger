@@ -117,6 +117,16 @@ export var friendsInfoReducer = (state = [], action) => {
             newState = state;
             newState.unshift(action.data);
             return newState;
+        case 'REMOVE_REQUEST':
+            newState = state;
+            newState = newState.map(function(friend){
+                if(friend._id == action.id) {
+                    friend.friend = false;
+                    friend.initiator = '';
+                }
+                return friend;
+            });
+            return newState;
         default:
             return state;
     }

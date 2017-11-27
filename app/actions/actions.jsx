@@ -290,3 +290,10 @@ export var addRequest = (data) => {
 		data
 	};
 };
+
+export var removeFriendReq = (id) => {
+	return {
+		type: 'REMOVE_REQUEST',
+		id
+	}
+}

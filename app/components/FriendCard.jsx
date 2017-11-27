@@ -7,37 +7,37 @@ let $ = require('jquery');
 export class FriendCard extends React.Component {
 	componentDidMount() {
         let {dispatch, socket, userInfo} = this.props;
-		$('.req').off().on('click', function (e) {
-		    e.preventDefault();
-			let el = $(this);
-			let value = el.attr('value');
-			let iClass = $(this).children('i').attr('class');
-			// noinspection JSAnnotator
+		// $('.req').off().on('click', function (e) {
+		//     e.preventDefault();
+		// 	let el = $(this);
+		// 	let value = el.attr('value');
+		// 	let iClass = $(this).children('i').attr('class');
+		// 	// noinspection JSAnnotator
 
-            let user = JSON.parse(localStorage.getItem('auth_user'))._id;
-            let formattedData = {
-                sender: user,
-                receiver: value
-            };
+        //     let user = JSON.parse(localStorage.getItem('auth_user'))._id;
+            // let formattedData = {
+            //     sender: user,
+            //     receiver: value
+            // };
 
-            $(this).html('<i class="fa fa-spinner fa-spin"></i>');
-            switch(iClass){
-                case 'fa fa-check':
-                    socket.emit('removeFriend', formattedData, function(success){
-                        console.log(success.success);
-                    });
+        //     $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+        //     switch(iClass){
+        //         case 'fa fa-check':
+        //             socket.emit('removeFriend', formattedData, function(success){
+        //                 console.log(success.success);
+        //             });
 
-                    $(this).html('<i class="fa fa-plus"></i>');
-                    break;
-                case 'fa fa-plus':
-                    socket.emit('addFriend', formattedData, function(success){
-                        console.log(success.success);
-                    });
-                    $(this).html('<i class="fa fa-check"></i>');
+        //             $(this).html('<i class="fa fa-plus"></i>');
+        //             break;
+        //         case 'fa fa-plus':
+        //             socket.emit('addFriend', formattedData, function(success){
+        //                 console.log(success.success);
+        //             });
+        //             $(this).html('<i class="fa fa-check"></i>');
 
-                    break;
-            }
-		});
+        //             break;
+        //     }
+		// });
 		
 		$('.req-accept').off().on('click', function (e) {
 			e.preventDefault();
@@ -79,7 +79,20 @@ export class FriendCard extends React.Component {
                 console.log(success.success);
             });
         });
-	}
+    }
+    
+    cancelRequest = (id) => {
+        let {dispatch, userInfo, socket} = this.props;
+        let user = userInfo[0]._id;
+        let formattedData = {
+            sender: user,
+            receiver: id
+        };
+        socket.emit('removeFriend', formattedData, function(success){
+            console.log(success.success);
+        });
+        dispatch(actions.removeFriendReq(id));
+    }
 
 	render() {
 		let {_id, name, picture, friend, accepted, initiator} = this.props;
@@ -87,7 +100,7 @@ export class FriendCard extends React.Component {
 		let friendsButton = () => {
 			if (friend === false && accepted === false) {
 				return (
-                    <span ref="btn" value={_id} className="req btn btn-sm">
+                    <span ref="btn" onClick={() => this.cancelRequest(_id)} className="req btn btn-sm">
                         <i className="fa fa-plus"/></span>
 				);
 			}
@@ -95,7 +108,7 @@ export class FriendCard extends React.Component {
 			if (friend === true && accepted === false) {
                 if(initiator == JSON.parse(localStorage.getItem('auth_user'))._id) {
                     return (
-                        <span ref="btn" value={_id} className="req btn btn-sm">
+                        <span ref="btn" onClick={() => this.cancelRequest(_id)} className="req btn btn-sm">
                         <i className="fa fa-check"/></span>
                     );
                 }

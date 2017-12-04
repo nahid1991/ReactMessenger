@@ -31,7 +31,7 @@ export class Nav extends React.Component {
 							<ul className="nav navbar-nav pull-right visible-xs dropdown">
 								<li className="dropbtn">
 									<a href="#">
-										<img className="thumb-friend-small-navbar img-thumbnail img-responsive" src={userInfo.picture}/>
+										<img className="thumb-friend-small-navbar img-thumbnail img-responsive" src={userInfo !== null ? userInfo.picture: ''}/>
 									</a>
 								</li>
 								<div className="dropdown-content">
@@ -43,8 +43,8 @@ export class Nav extends React.Component {
 						<ul className="nav navbar-nav navbar-right visible-lg visible-md visible-sm dropdown">
 							<li className="dropbtn">
 								<a href="#">
-									<img className="thumb-friend-small-navbar img-thumbnail
-									img-responsive" src={userInfo.picture}/>
+									<img className="thumb-friend-small-navbar img-thumbnail img-responsive" 
+									src={userInfo !== null ? userInfo.picture: ''} />
 								</a>
 								<div className="dropdown-content">
 									<a href="#" onClick={this.logout.bind(this)}>Log out</a>

@@ -68,20 +68,19 @@ export class Login extends React.Component {
                                  style={{marginLeft: '35%', width: '25%', display: 'none', zIndex: '0'}}></img>
                             <FacebookLogin
                                 appId="342612186136243"
-                                cssClass="btn btn-lg btn-primary"
+                                cssClass="btn btn-lg btn-primary fa fa-facebook"
                                 autoLoad={false}
+                                textButton=" | Sign in with Facebook"
                                 callback={this.responseFacebook.bind(this)}/>
-                            <br/>
                             <hr/>
 
                             <GoogleLogin
                                 socialId="731586613303-jjm4tlkvp3i8lulsk90h2bn9cbah9sn9.apps.googleusercontent.com"
-                                class="btn btn-lg btn-danger"
+                                class="btn btn-lg btn-danger fa fa-google"
                                 scope="profile"
                                 responseHandler={this.responseGoogle.bind(this)}
-                                buttonText="Login With Google"/>
+                                buttonText=" | Sign in With Google"/>
                             <hr/>
-
                         </div>
                     </div>
 

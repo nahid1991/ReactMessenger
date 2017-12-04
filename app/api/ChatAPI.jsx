@@ -3,6 +3,7 @@ import axios from 'axios';
 const CHAT_SERVER = 'http://localhost:4201';
 const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_token=';
 const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=';
+const GITHUB_GRAPH = 'https://github.com/login/oauth/access_token';
 
 module.exports = {
 	searchFriends: function() {
@@ -137,6 +138,16 @@ module.exports = {
 			});
 		});
 	},
+
+	githubLogin: function (code) {
+		return new Promise((resolve, reject) => {
+			this.githubInfo(code).then(function(response){
+				console.log(response);
+			}, function(err) {
+				reject(new Error('Unable to fetch user data'));
+			});
+		})
+	},
 	
 	
 	getUserData: function () {
@@ -186,7 +197,6 @@ module.exports = {
 				reject(new Error(err));
 			});
 		});
-		
 	},
 
 	addFriend: function (id) {

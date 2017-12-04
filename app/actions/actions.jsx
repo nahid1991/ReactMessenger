@@ -200,6 +200,23 @@ export var googleLogin = (accessToken) => {
 	};
 };
 
+export var githubLogin = (accessToken) => {
+	return (dispatch, getState) => {
+		return new Promise((resolve, reject) => {
+			// ChatAPI.googleLogin(accessToken);
+			ChatAPI.githubLogin(accessToken).then(function (response) {
+				ChatAPI.getUserData().then(function (res) {
+					resolve(res);
+				}, function (err) {
+					reject(new Error(err));
+				});
+			}, function (err) {
+				reject(new Error(err));
+			});
+		});
+	};
+};
+
 export var addFriend = (id) => {
 	return (dispatch, getState) => {
 		return new Promise((resolve, reject) => {

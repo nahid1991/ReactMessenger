@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from 'actions';
 import ReactDOM from 'react-dom';
 import {GoogleLogin} from 'react-google-login-component';
+import GitHubLogin from 'react-github-login';
 
 
 export class Login extends React.Component {
@@ -52,6 +53,22 @@ export class Login extends React.Component {
         });
     }
 
+    githubLoginSucess(response) {
+        let {dispatch} = this.props;
+        console.log(response);
+        dispatch(actions.githubLogin(response.code)).then(function(res) {
+            console.log(res);
+        }, function(err){
+            console.log(err);
+            ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
+            ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
+        });
+    }
+
+    githubLoginFailure(response) {
+        console.error(response);
+    }
+
     render() {
         return (
             <div>
@@ -81,6 +98,18 @@ export class Login extends React.Component {
                                 responseHandler={this.responseGoogle.bind(this)}
                                 buttonText=" | Sign in With Google"/>
                             <hr/>
+
+                            <hr/>
+                            <GitHubLogin clientId="cc7461fe0ebe018c2fb9" 
+                                className="btn btn-lg fa fa-github"
+                                redirectUri=""
+                                scope="read:user"
+                                buttonText=" | Sign in with Github"
+                                onSuccess={this.githubLoginSucess.bind(this)}
+                                onFailure={this.githubLoginFailure.bind(this)}
+                                />
+                            <hr/>
+
                         </div>
                     </div>
 

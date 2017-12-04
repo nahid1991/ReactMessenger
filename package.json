@@ -35,6 +35,7 @@
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
     "react-facebook-login": "^3.5.0",
+    "react-github-login": "^1.0.3",
     "react-google-login-component": "^0.7.0",
     "react-loader": "^2.4.2",
     "react-redux": "^5.0.6",

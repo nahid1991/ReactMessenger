@@ -199,6 +199,26 @@ module.exports = {
 		});
 	},
 
+	githubInfo: function (code) {
+		return new Promise((resolve, reject) => {
+			let requestUrl = `${GITHUB_GRAPH}?client_id=cc7461fe0ebe018c2fb9&client_secret=ba06f72aa8bd3e928ff9f0bced9fc4bf265fb147&code=${code}`;
+			
+			let config = {
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'Accept': 'application/json'
+				}
+			};
+			axios.post(requestUrl, {}, config).then(
+				function(res){
+					resolve(res.data);
+				}, function(err) {
+					reject(new Error(err));
+				}
+			);
+		});
+	},
+
 	addFriend: function (id) {
 		return new Promise((resolve, reject) => {
             let requestUrl = `${CHAT_SERVER}/users/make_friends/${id}`;

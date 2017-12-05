@@ -5,6 +5,8 @@ const FACEBOOK_GRAPH = 'https://graph.facebook.com/v2.8/me?fields=email&access_t
 const GOOGLE_GRAPH = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=';
 const GITHUB_GRAPH = 'https://github.com/login/oauth/access_token';
 
+let $ = require('jquery');
+
 module.exports = {
 	searchFriends: function() {
 		let requestUrl = `${CHAT_SERVER}/users/friends?page=1`;
@@ -203,19 +205,20 @@ module.exports = {
 		return new Promise((resolve, reject) => {
 			let requestUrl = `${GITHUB_GRAPH}?client_id=cc7461fe0ebe018c2fb9&client_secret=ba06f72aa8bd3e928ff9f0bced9fc4bf265fb147&code=${code}`;
 			
-			let config = {
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'Accept': 'application/json'
+			$.ajax({
+				url: requestUrl,
+				type: 'POST',
+				beforeSend: function(request) {
+					request.setRequestHeader("Accept", 'application/x-www-form-urlencoded');
+				},
+				dataType: 'jsonp',
+				success: function(res) {
+					console.log(res);
+				},
+				error: function(err) {
+					console.log(err);
 				}
-			};
-			axios.post(requestUrl, {}, config).then(
-				function(res){
-					resolve(res.data);
-				}, function(err) {
-					reject(new Error(err));
-				}
-			);
+			});
 		});
 	},
 

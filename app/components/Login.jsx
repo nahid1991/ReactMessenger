@@ -60,8 +60,8 @@ export class Login extends React.Component {
             console.log(res);
         }, function(err){
             console.log(err);
-            ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
-            ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
+            // ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
+            // ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
         });
     }
 
@@ -99,16 +99,16 @@ export class Login extends React.Component {
                                 buttonText=" | Sign in With Google"/>
                             <hr/>
 
-                            <hr/>
+                            {/* <hr/>
                             <GitHubLogin clientId="cc7461fe0ebe018c2fb9" 
                                 className="btn btn-lg fa fa-github"
-                                redirectUri=""
+                                redirectUri="http://localhost:3000/#/"
                                 scope="read:user"
                                 buttonText=" | Sign in with Github"
                                 onSuccess={this.githubLoginSucess.bind(this)}
                                 onFailure={this.githubLoginFailure.bind(this)}
                                 />
-                            <hr/>
+                            <hr/> */}
 
                         </div>
                     </div>

@@ -152,3 +152,9 @@ export var friendIdReducer = (state = '', action) => {
     };
 };
 
+export var messageReducer = (state = [], action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};

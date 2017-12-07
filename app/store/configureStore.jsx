@@ -1,7 +1,7 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 import {searchTextReducer, showCompletedReducer, todosReducer, authReducer, userInfoReducer,
-  friendsInfoReducer, friendIdReducer} from 'reducers';
+  friendsInfoReducer, friendIdReducer, messageReducer} from 'reducers';
 
 
 export var configure = (initialState = {}) => {
@@ -12,7 +12,8 @@ export var configure = (initialState = {}) => {
     auth: authReducer,
     userInfo: userInfoReducer,
     friendsInfo: friendsInfoReducer,
-    friendId: friendIdReducer
+    friendId: friendIdReducer,
+    messages: messageReducer
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(

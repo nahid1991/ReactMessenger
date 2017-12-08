@@ -25,7 +25,7 @@ export class Chatroom extends React.Component {
 
     componentWillReceiveProps(newProps) {
         const {dispatch} = this.props;
-        if(typeof newProps.params.id ==='undefined') {
+        if(typeof newProps.params.id === 'undefined') {
             dispatch(actions.storeFriendId(''));
         } else {
             dispatch(actions.storeFriendId(newProps.params.id));
@@ -35,6 +35,7 @@ export class Chatroom extends React.Component {
         friendId = newProps.params.id;
         if(this.props.params.id !== newProps.params.id) {
             socket.removeAllListeners();
+            dispatch(actions.emptyMessages());
         }
         this.forceUpdate();
     }
@@ -43,11 +44,7 @@ export class Chatroom extends React.Component {
         socket.disconnect();
     }
 
-    render() {
-        let {friendsInfo} = this.props;
-        let friends = friendsInfo;
-        let friendId = localStorage.getItem('friendId');
-        
+    render() {        
         return (
             <div>
                 <Nav socket={socket} userInfo={JSON.parse(localStorage.getItem('auth_user'))}/>
@@ -55,12 +52,15 @@ export class Chatroom extends React.Component {
                     <div className="panel-body">
                         <div className="row">
                             <Friends socket={socket} friendsInfo={this.props.friendsInfo}/>
-                            <Messages socket={socket} friendId={this.props.friendId}/>
-                            <ProfileDetail socket={socket} friendsInfo={this.props.friendsInfo} friendId={this.props.friendId}/>
+                            <Messages socket={socket} friendId={this.props.friendId} 
+                            userInfo={JSON.parse(localStorage.getItem('auth_user'))} 
+                            messages={this.props.messages}/>
+                            <ProfileDetail socket={socket} friendsInfo={this.props.friendsInfo} 
+                            friendId={this.props.friendId}/>
                         </div>
                     </div>
                 </div>
-                <Chatbox socket={socket} friendId={this.props.friendId}/>
+                <Chatbox socket={socket} friendId={this.props.friendId} />
             </div>
         );
     }
@@ -70,7 +70,8 @@ const mapStateToProps = function (store) {
     return {
         friendsInfo: store.friendsInfo,
         userInfo: store.userInfo,
-        friendId: store.friendId
+        friendId: store.friendId,
+        messages: store.messages
     }
 };
 

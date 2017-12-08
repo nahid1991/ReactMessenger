@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import Message from 'Message';
+import * as actions from 'actions';
 
 let $ = require('jquery');
 
@@ -17,27 +18,11 @@ export class Messages extends React.Component {
     }
 
     receiveMessage (friendId) {
-		const {socket} = this.props;
+		const {socket, dispatch} = this.props;
 		let user = JSON.parse(localStorage.getItem('auth_user'))._id;
 
         socket.on(user+'-'+friendId, function (msg) {
-            let message = msg.message;
-
-            if (msg.id == (JSON.parse(localStorage.auth_user)._id)) {
-                $('.messages').append(
-                    '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
-                    '<p class="my-message">' + message +
-                    '</p></div>'
-                );
-                $('.messages').scrollTop($('.messages').height()*$('.messages').height());
-            } else {
-                $('.messages').append(
-                    '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
-                    '<p class="friends-message">' + message +
-                    '</p></div>'
-                );
-                $('.messages').scrollTop($('.messages').height()*$('.messages').height());
-            }
+            dispatch(actions.keepMessage(msg));
         });
     }
 
@@ -45,13 +30,9 @@ export class Messages extends React.Component {
         this.scrollToBottom();
     }
 
-    componentWillReceiveProps(newProps) {
-        if(this.props.friendId !== newProps.friendId) {
-            $('.messages').empty();
-        }
-    }
-
     componentDidUpdate() {
+        let {userInfo} = this.props;
+
         if(typeof this.props.friendId !== 'undefined') {
             this.receiveMessage(this.props.friendId);
         }
@@ -59,9 +40,19 @@ export class Messages extends React.Component {
     }
 
     render() {
+        let {messages, userInfo} = this.props;
+
+        let renderMessages = () => {
+            return messages.map(function(message, index) {
+                return (
+                    <Message message={message} key={index} userInfo={userInfo} />
+                );
+            });
+        }
         return (
             <div ref={(el) => {this.messagesContainer = el;}}
                  className="col-xs-5 col-sm-5 col-md-5 col-lg-5 custom-div messages pre-scrollable border-line">
+                 {renderMessages()}
             </div>
         );
     }

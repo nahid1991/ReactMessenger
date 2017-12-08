@@ -1,10 +1,11 @@
 import React from 'react';
 let $ = require('jquery');
 import {connect} from 'react-redux';
+import * as actions from 'actions';
 
 export class Chatbox extends React.Component {
     sendMessage(e) {
-        const {socket, friendId} = this.props;
+        const {socket, friendId, dispatch} = this.props;
         if (e.key == 'Enter') {
             e.preventDefault();
             let message = this.refs.message.value;
@@ -17,7 +18,8 @@ export class Chatbox extends React.Component {
                     chat_room_user: (JSON.parse(localStorage.auth_user))._id + '-' + friendId,
                     chat_room_friend: friendId + '-' + (JSON.parse(localStorage.auth_user))._id,
                 };
-
+                
+                dispatch(actions.keepMessage(formattedData));
                 socket.emit('message', formattedData);
                 this.refs.message.value = '';
                 this.refs.message.focus();
@@ -27,7 +29,7 @@ export class Chatbox extends React.Component {
     }
 
     sendMessageButton(e) {
-        const {socket, friendId} = this.props;
+        const {socket, friendId, dispatch} = this.props;
         e.preventDefault();
         let message = this.refs.message.value;
         let result = message.match(/^ +$/g);
@@ -40,6 +42,7 @@ export class Chatbox extends React.Component {
                 chat_room_friend: friendId + '-' + (JSON.parse(localStorage.auth_user))._id,
             };
 
+            dispatch(actions.keepMessage(formattedData));
             socket.emit('message', formattedData);
             this.refs.message.value = '';
             this.refs.message.focus();

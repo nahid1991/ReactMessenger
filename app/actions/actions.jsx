@@ -313,12 +313,25 @@ export var removeFriendReq = (id) => {
 		type: 'REMOVE_REQUEST',
 		id
 	}
-}
+};
 
 export var sendFriendReq = (id, user) => {
 	return {
 		type: 'SEND_REQUEST',
 		id,
 		user
+	}
+};
+
+export var keepMessage = (msg) => {
+	return {
+		type: 'KEEP_MESSAGE',
+		msg
+	}
+};
+
+export var emptyMessage = () => {
+	return {
+		type: 'EMPTY_MESSAGES'
 	}
 }

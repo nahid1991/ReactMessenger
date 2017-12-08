@@ -154,6 +154,12 @@ export var friendIdReducer = (state = '', action) => {
 
 export var messageReducer = (state = [], action) => {
     switch (action.type) {
+        case 'KEEP_MESSAGE':
+            let newState = state;
+            newState = [...newState, action.msg];
+            return newState;
+        case 'EMPTY_MESSAGES':
+            return [];
         default:
             return state;
     }

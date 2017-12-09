@@ -330,7 +330,7 @@ export var keepMessage = (msg) => {
 	}
 };
 
-export var emptyMessage = () => {
+export var emptyMessages = () => {
 	return {
 		type: 'EMPTY_MESSAGES'
 	}

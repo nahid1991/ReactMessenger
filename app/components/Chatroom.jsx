@@ -33,10 +33,11 @@ export class Chatroom extends React.Component {
 
         localStorage.setItem('friendId', newProps.params.id);
         friendId = newProps.params.id;
-        socket.removeAllListeners();
+        
         if(this.props.params.id !== newProps.params.id) {
             dispatch(actions.emptyMessages());
         }
+        socket.removeAllListeners();
         this.forceUpdate();
     }
 

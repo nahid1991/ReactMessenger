@@ -334,4 +334,11 @@ export var emptyMessages = () => {
 	return {
 		type: 'EMPTY_MESSAGES'
 	}
-}
+};
+
+export var updateFriendsList = (data) => {
+	return {
+		type: 'UPDATE_FRIENDS_LIST',
+		friend: data
+	}
+}; 

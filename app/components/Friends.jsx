@@ -21,6 +21,7 @@ export class Friends extends React.Component {
                 window.location.hash = '#/';
             } else {
                 dispatch(actions.storeFriendsData(res.docs));
+                console.log(res);
                 localStorage.setItem('friends', JSON.stringify(res.docs));
                 localStorage.setItem('friendsPageNumber', res.page);
                 localStorage.setItem('totalPageFriends', res.pages);
@@ -59,7 +60,9 @@ export class Friends extends React.Component {
 
     componentDidMount() {
         let {dispatch, socket} = this.props;
-        socket.on(JSON.parse(localStorage.getItem('auth_user'))._id + '-receivedRequest', (data) => {
+        let userId = JSON.parse(localStorage.getItem('auth_user'))._id;
+        
+        socket.on(userId + '-receivedRequest', (data) => {
             // dispatch(actions.addRequest(data));
             if(!data.hasOwnProperty('friend')) {
 				data.friend = true;
@@ -70,6 +73,13 @@ export class Friends extends React.Component {
             
             dispatch(actions.addRequest(data));
             // this.setState(this.state);
+            this.forceUpdate();
+        });
+
+        socket.on(userId + '-friendsUpdate', (data) => {
+            dispatch(actions.updateFriendsList(data));
+            
+            console.log(data);
             this.forceUpdate();
         });
     }

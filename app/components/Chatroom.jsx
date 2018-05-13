@@ -15,7 +15,7 @@ let socket;
 
 export class Chatroom extends React.Component {
     componentWillMount() {
-        socket = io.connect('http://localhost:4201');
+        socket = io.connect('http://localhost:4201', {'multiplex': false});
         let {dispatch, params} = this.props;
         friendId = params.id;
         localStorage.setItem('friendId', friendId);

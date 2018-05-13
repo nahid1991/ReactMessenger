@@ -75,8 +75,10 @@ export var userInfoReducer = (state = {}, action) => {
     switch (action.type) {
         case 'KEEP_USER_DATA':
             // console.log(action.auth_user);
+            if(state.length > 0) {
+                return state;
+            }
             return [
-                ...state,
                 action.auth_user
             ];
         case 'REMOVE_USER_DATA':

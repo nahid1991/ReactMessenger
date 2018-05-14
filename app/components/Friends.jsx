@@ -61,14 +61,17 @@ export class Friends extends React.Component {
     componentDidMount() {
         let {dispatch, socket} = this.props;
         let userId = JSON.parse(localStorage.getItem('auth_user'))._id;
-        console.log(socket);
 
         socket.on('error', function(err){
             console.log(err);
         });
-        console.log(userId+'receivedRequest');
-        
-        socket.on(userId + 'receivedRequest', (data) => {
+    }
+
+    componentDidUpdate() {
+        let {dispatch, socket} = this.props;
+        let userId = JSON.parse(localStorage.getItem('auth_user'))._id;
+
+        socket.on(userId + '-receivedRequest', (data) => {
             // dispatch(actions.addRequest(data));
             if(!data.hasOwnProperty('friend')) {
 				data.friend = true;
@@ -82,7 +85,7 @@ export class Friends extends React.Component {
             this.forceUpdate();
         });
 
-        socket.on(userId + 'friendsUpdate', (data) => {
+        socket.on(userId + '-friendsUpdate', (data) => {
             dispatch(actions.updateFriendsList(data));
             
             console.log(data);

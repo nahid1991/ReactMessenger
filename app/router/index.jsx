@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import {Route, Router, IndexRoute, browserHistory} from 'react-router';
 import Chatroom from 'Chatroom';
 import Login from 'Login';
 
@@ -18,7 +18,7 @@ var redirectIfLoggedIn = (nextState, replace, next) => {
 };
 
 export default (
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
         <Route>
             <Route path="/">
                 <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>

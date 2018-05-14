@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 import { userInfo } from 'os';
+import { browserHistory } from 'react-router';
 
 let $ = require('jquery');
 
@@ -44,6 +45,10 @@ export class FriendCard extends React.Component {
         });
 
         dispatch(actions.rejectFriend(id));
+    }
+
+    joinChat= (id) => {
+        browserHistory.push('/tab/'+id);
     }
 
     sendRequest = (id) => {
@@ -109,7 +114,7 @@ export class FriendCard extends React.Component {
 		let friendInfo = () => {
             if(friend === false || (friend === true && accepted === false)) {
                 return (
-                    <a href={"#/tab/" + _id} title={name} onClick={e => e.preventDefault()}>
+                    <a href={"/tab/" + _id} title={name} onClick={e => e.preventDefault()}>
                         <img
                             className="thumb-friend img-thumbnail img-responsive visible-md visible-lg"
                             src={picture}/>
@@ -121,7 +126,7 @@ export class FriendCard extends React.Component {
                 );
             } else {
                 return (
-                    <a href={"#/tab/" + _id} title={name}>
+                    <a title={name} onClick={(e) => {e.preventDefault(); this.joinChat(_id);}} style={{cursor: 'pointer'}}>
                         <img
                             className="thumb-friend img-thumbnail img-responsive visible-md visible-lg"
                             src={picture}/>

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from 'actions';
 
 export class Nav extends React.Component {
-	logout() {
+	logout(event) {
 		let {dispatch} = this.props;
 		dispatch(actions.removeUserData());
 		dispatch(actions.removeFriendsData());
@@ -12,8 +12,9 @@ export class Nav extends React.Component {
 		localStorage.removeItem('friendsPageNumber');
 		localStorage.removeItem('totalPageFriends');
 		localStorage.removeItem('searching');
+		localStorage.removeItem('friends');
 		localStorage.removeItem('friendId');
-		window.location.hash = '#/';
+		window.location.replace = '/';
 	}
 	
 	render() {
@@ -24,8 +25,8 @@ export class Nav extends React.Component {
 					<div className="container-fluid">
 
 						<div className="navbar-header">
-							<a className="navbar-brand" href="#" style={{display: 'inline'}}>
-								<img src="./ghost.png" className="pull-left"
+							<a className="navbar-brand" href="/" style={{display: 'inline'}}>
+								<img src="http://localhost:3000/ghost.png" className="pull-left"
 									 style={{maxHeight: "30px", float: "left"}}></img></a>
 								<span className="visible-lg visible-md" style={{float: 'left', marginTop: '10px'}}>good ghost </span>
 							<ul className="nav navbar-nav pull-right visible-xs dropdown">
@@ -35,7 +36,7 @@ export class Nav extends React.Component {
 									</a>
 								</li>
 								<div className="dropdown-content">
-									<a href="#" onClick={this.logout.bind(this)}>Log out</a>
+									<a href="/" onClick={this.logout.bind(this)}>Log out</a>
 								</div>
 							</ul>
 						
@@ -47,7 +48,7 @@ export class Nav extends React.Component {
 									src={userInfo !== null ? userInfo.picture: ''} />
 								</a>
 								<div className="dropdown-content">
-									<a href="#" onClick={this.logout.bind(this)}>Log out</a>
+									<a href="/" onClick={this.logout.bind(this)}>Log out</a>
 								</div>
 							</li>
 						</ul>

@@ -5,12 +5,13 @@ import * as actions from 'actions';
 import ReactDOM from 'react-dom';
 import {GoogleLogin} from 'react-google-login-component';
 import GitHubLogin from 'react-github-login';
+import {browserHistory} from 'react-router';
 
 
 export class Login extends React.Component {
     componentWillMount() {
         if (JSON.parse(localStorage.getItem('loginData'))) {
-            window.location.hash = '#/tab';
+            browserHistory.push('/tab');
         }
     }
     responseFacebook(response) {
@@ -22,7 +23,7 @@ export class Login extends React.Component {
             loginData = localStorage.getItem('loginData');
             if (loginData) {
                 dispatch(actions.keepUserData(response));
-                window.location.hash = '#/tab';
+                browserHistory.push('/tab');
             } else {
             }
         }, function (err) {
@@ -43,7 +44,7 @@ export class Login extends React.Component {
             loginData = localStorage.getItem('loginData');
             if (loginData) {
                 dispatch(actions.keepUserData(response));
-                window.location.hash = '#/tab';
+                browserHistory.push('/tab');
             } else {
             }
         }, function (err) {

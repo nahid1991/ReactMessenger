@@ -3,6 +3,7 @@ var express = require('express');
 // Create our app
 var app = express();
 const PORT = process.env.PORT || 3000;
+var path = require('path');
 
 // var io = require('socket.io')(server);
 app.use(function(req, res, next){
@@ -27,11 +28,18 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+});
 
 app.listen(PORT, function () {
   console.log('Express server is up on port '+PORT);
 });
+
+
+
 var server = require('http').Server(app);
 const io = require('socket.io')(server);
 

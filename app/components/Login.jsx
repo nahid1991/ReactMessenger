@@ -1,5 +1,4 @@
 import React from 'react';
-import FacebookLogin from 'react-facebook-login';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 import ReactDOM from 'react-dom';

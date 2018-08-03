@@ -341,4 +341,4 @@ export var updateFriendsList = (data) => {
 		type: 'UPDATE_FRIENDS_LIST',
 		friend: data
 	}
-}; 
+};

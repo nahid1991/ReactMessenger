@@ -14,24 +14,6 @@ export class Login extends React.Component {
             browserHistory.push('/tab');
         }
     }
-    responseFacebook(response) {
-        let {dispatch} = this.props;
-        ReactDOM.findDOMNode(this.refs.loader).style.display = 'block';
-        ReactDOM.findDOMNode(this.refs.error).style.display = 'none';
-        dispatch(actions.facebookLogin(response.id, response.name, response.accessToken)).then(function (response) {
-            let loginData = '';
-            loginData = localStorage.getItem('loginData');
-            if (loginData) {
-                dispatch(actions.keepUserData(response));
-                browserHistory.push('/tab');
-            } else {
-            }
-        }, function (err) {
-            console.log(err);
-            ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
-            ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
-        });
-    }
 
 
     responseGoogle(googleUser) {
@@ -54,21 +36,21 @@ export class Login extends React.Component {
         });
     }
 
-    githubLoginSucess(response) {
-        let {dispatch} = this.props;
-        console.log(response);
-        dispatch(actions.githubLogin(response.code)).then(function(res) {
-            console.log(res);
-        }, function(err){
-            console.log(err);
-            // ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
-            // ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
-        });
-    }
+    // githubLoginSucess(response) {
+    //     let {dispatch} = this.props;
+    //     console.log(response);
+    //     dispatch(actions.githubLogin(response.code)).then(function(res) {
+    //         console.log(res);
+    //     }, function(err){
+    //         console.log(err);
+    //         // ReactDOM.findDOMNode(this.refs.loader).style.display = 'none';
+    //         // ReactDOM.findDOMNode(this.refs.error).style.display = 'block';
+    //     });
+    // }
 
-    githubLoginFailure(response) {
-        console.error(response);
-    }
+    // githubLoginFailure(response) {
+    //     console.error(response);
+    // }
 
     render() {
         return (
@@ -84,13 +66,6 @@ export class Login extends React.Component {
                             <p ref="error" style={{color: 'red', display: 'none'}}>Error in logging in</p>
                             <img ref="loader" src='./loader.gif' className="centered"
                                  style={{marginLeft: '35%', width: '25%', display: 'none', zIndex: '0'}}></img>
-                            <FacebookLogin
-                                appId="342612186136243"
-                                cssClass="btn btn-lg btn-primary fa fa-facebook"
-                                autoLoad={false}
-                                textButton=" | Sign in with Facebook"
-                                callback={this.responseFacebook.bind(this)}/>
-                            <hr/>
 
                             <GoogleLogin
                                 socialId="731586613303-jjm4tlkvp3i8lulsk90h2bn9cbah9sn9.apps.googleusercontent.com"

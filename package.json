@@ -1,12 +1,12 @@
 {
   "name": "good-ghost",
   "version": "1.0.0",
-  "description": "Simple weather app",
+  "description": "Simple messenger app",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test karma start",
     "build": "webpack",
-    "start": "npm run build && node server.js"
+    "start": "npm run build && node server"
   },
   "author": "Nahid",
   "license": "MIT",
@@ -34,7 +34,6 @@
     "react-addons-test-utils": "^15.4.2",
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
-    "react-facebook-login": "^3.5.0",
     "react-github-login": "^1.0.3",
     "react-google-login-component": "^0.7.0",
     "react-loader": "^2.4.2",

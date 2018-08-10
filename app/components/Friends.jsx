@@ -85,7 +85,10 @@ export class Friends extends React.Component {
         });
 
         socket.on(userId + '-friendsUpdate', (data) => {
-            dispatch(actions.updateFriendsList(data));
+            data.accepted = true;
+            data.friend = true;
+            data.chat_room = userId+'-'+data._id;
+            dispatch(actions.updateFriendsListReceived(data));
             this.forceUpdate();
         });
     }

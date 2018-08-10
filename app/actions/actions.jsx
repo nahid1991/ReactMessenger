@@ -342,3 +342,10 @@ export var updateFriendsList = (data) => {
 		friend: data
 	}
 };
+
+export var updateFriendsListReceived = (data) => {
+	return {
+		type: 'UPDATE_FRIENDS_LIST_RECEIVED',
+		friend: data
+	}
+};

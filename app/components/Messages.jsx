@@ -23,6 +23,7 @@ export class Messages extends React.Component {
 
         socket.on(user+'-'+friendId, function (msg) {
             dispatch(actions.keepMessage(msg));
+            dispatch(actions.updateFriendsList(friendId));
         });
     }
 

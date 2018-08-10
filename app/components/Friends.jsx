@@ -21,7 +21,6 @@ export class Friends extends React.Component {
                 window.location.hash = '#/';
             } else {
                 dispatch(actions.storeFriendsData(res.docs));
-                console.log(res);
                 localStorage.setItem('friends', JSON.stringify(res.docs));
                 localStorage.setItem('friendsPageNumber', res.page);
                 localStorage.setItem('totalPageFriends', res.pages);
@@ -87,8 +86,6 @@ export class Friends extends React.Component {
 
         socket.on(userId + '-friendsUpdate', (data) => {
             dispatch(actions.updateFriendsList(data));
-            
-            console.log(data);
             this.forceUpdate();
         });
     }

@@ -107,13 +107,15 @@ export var friendsInfoReducer = (state = [], action) => {
             // console.log(action.auth_user);
             return state;
         case 'UPDATE_FRIENDS_LIST':
-            newState = state.find(function(st) {
-                return st._id = action.friend
-            });
-            return {
-                newstate,
-                ...state
-            };
+            newState = state.filter(function(st) {
+                return st._id == action.friend
+            })[0];
+            return [
+                newState,
+                ...state.filter(function(st){
+                    return st._id != action.friend
+                })
+            ];
         case 'ACCEPT_FRIEND':
             return state.map(function(friend) {
                 return (friend._id === action.id) ? {...friend, accepted: true} : friend;

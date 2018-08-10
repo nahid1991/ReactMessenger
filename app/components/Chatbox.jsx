@@ -23,6 +23,7 @@ export class Chatbox extends React.Component {
                 socket.emit('message', formattedData);
                 this.refs.message.value = '';
                 this.refs.message.focus();
+                dispatch(actions.updateFriendsList(friendId));
             }
 
         }
@@ -46,6 +47,7 @@ export class Chatbox extends React.Component {
             socket.emit('message', formattedData);
             this.refs.message.value = '';
             this.refs.message.focus();
+            dispatch(actions.updateFriendsList(friendId));
         } else {
             this.refs.message.focus();
         }
